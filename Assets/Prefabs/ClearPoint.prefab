@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8131041674589690629}
   - component: {fileID: 4045605075194581928}
   - component: {fileID: 7708642104039145359}
+  - component: {fileID: 7967302499734586638}
   m_Layer: 0
   m_Name: ClearPoint
   m_TagString: Untagged
@@ -109,3 +110,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7967302499734586638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6370748317926581736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50b33aa88ed05f469d4bc9398021d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
