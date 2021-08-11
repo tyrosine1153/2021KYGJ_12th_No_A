@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curDamageAvoidTime: 0
-  damageRate: 0
+  damageRate: 1
