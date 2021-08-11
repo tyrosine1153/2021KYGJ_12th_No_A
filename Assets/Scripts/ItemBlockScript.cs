@@ -15,7 +15,7 @@ public class ItemBlockScript : MonoBehaviour
     {
         if (ItemPrefab == null)
         {
-            ItemPrefab = Resources.Load<GameObject>("Prefabs/Item");
+            ItemPrefab = Resources.Load<GameObject>("Item");
         }
 
         hasItem = true;
@@ -28,7 +28,7 @@ public class ItemBlockScript : MonoBehaviour
         {
             Vector3 pointOfImpact = contact.point;
             print(pointOfImpact);
-            if ( collision.transform.CompareTag("Player") && (transform.position - pointOfImpact).y >= 0.5 && hasItem)
+            if ( collision.transform.CompareTag("Player") && (transform.position - pointOfImpact).y >= 0.4 && hasItem)
             {
                 CreateItemObj();
                 hasItem = false;

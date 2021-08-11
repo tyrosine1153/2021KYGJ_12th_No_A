@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class ClearPointScript : MonoBehaviour
 {
-    private Dictionary<Item, int> clearItems;
-    
+    public Item[] clearItems;
+
+    private void Awake()
+    {
+        GameManager.Instance.clearItems = clearItems;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Player"))
@@ -17,7 +22,7 @@ public class ClearPointScript : MonoBehaviour
 
     private void TryStageClear()
     {
-        if (GameManager.Instance.IsClearableItem(clearItems))
+        if (GameManager.Instance.IsClearableItem())
         {
             GameManager.Instance.StageClear();
         }
