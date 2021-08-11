@@ -6,25 +6,38 @@ public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private int maxHP = 5;
     [SerializeField] private int curHP;
-    [SerializeField] private Dictionary<Item, int> curItem;
-
+    
     // 피격 후 일정 시간동안 피격 무효
     public float maxDamageTime;
     public float curDamageTime;
     
+    public Item[] clearItems;
+    private Dictionary<Item, bool> curItem;
+
     void Start()
     {
         curHP = maxHP;
-        curItem = new Dictionary<Item, int>();
+        curDamageTime = maxDamageTime;
+
+        Invoke(nameof(InitItem), 0.5f);
     }
 
-    
     private void FixedUpdate()
     {
         if (curDamageTime > 0)
         {
             curDamageTime -= Time.deltaTime;
         }
+    }
+    
+    private void InitItem()
+    {
+        curItem = new Dictionary<Item, bool>();
+        foreach (var item in clearItems)
+        {
+            curItem[item] = false;
+        }
+        ViewCurItem();
     }
     
     public void GetDamagedHP(int damagePoint = 1)
@@ -56,19 +69,19 @@ public class GameManager : MonoSingleton<GameManager>
         print($"Player Get Healed! HP : {curHP}/{maxHP}");
     }
 
-    public void GetItem(Item item, int num = 1)
+    public void GetItem(Item item)
     {
-        curItem[item] += num;
+        curItem[item] = true;
         // 대충 효과
 
         print($"Player Get Item! {curItem.Keys}");
     }
 
-    public bool IsClearableItem(Dictionary<Item, int> clearItems)
+    public bool IsClearableItem()
     {
-        foreach (var item in clearItems.Keys)
+        foreach (var item in clearItems)
         {
-            if (curItem[item] == 0)
+            if (!curItem[item])
             {
                 return false;        
             }

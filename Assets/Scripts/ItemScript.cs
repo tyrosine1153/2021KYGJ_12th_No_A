@@ -7,7 +7,6 @@ using UnityEngine;
 public class ItemScript : MonoBehaviour
 {
     private Item _itemInfo;
-    private int _itemNum;
     private bool _isGotten;
 
     public Item ItemInfo
@@ -17,7 +16,6 @@ public class ItemScript : MonoBehaviour
 
     private void Start()
     {
-        _itemNum = 1;
         _isGotten = false;
     }
 
@@ -27,7 +25,7 @@ public class ItemScript : MonoBehaviour
         if (collision.transform.CompareTag("Player") && !_isGotten)
         {
             GetItem();
-            _isGotten = false;
+            _isGotten = true;
         }
     }
     
@@ -37,6 +35,7 @@ public class ItemScript : MonoBehaviour
     {
         // 아이템 개수가 구현 되었는지는 확정이 안돼서 사용안함
         GameManager.Instance.GetItem(_itemInfo);
+        
         // Animation
     }
 }
