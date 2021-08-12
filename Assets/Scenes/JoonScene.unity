@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1270618215, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270618215, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270618216, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2690624684813938390, guid: dfd7a460cacc3c941b175832b688e6a2, type: 3}
+    - target: {fileID: 768902261632811089, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4698285733863387028, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
       propertyPath: m_Name
       value: Player
@@ -182,7 +198,8 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 822459229}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 768902261632811089, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
 --- !u!1 &339097701
 GameObject:
@@ -1009,6 +1026,8 @@ MonoBehaviour:
   curHP: 0
   maxDamageTime: 5
   curDamageTime: 0
+  isInSafeZone: 0
+  clearItems: 
 --- !u!4 &822459230
 Transform:
   m_ObjectHideFlags: 0
