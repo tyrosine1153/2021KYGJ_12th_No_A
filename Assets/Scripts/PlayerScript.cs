@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
     [Header("Inspector")]
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] Animator ani;
+    [SerializeField] SpriteRenderer sprite;
 
     [Header("Time")]
     [SerializeField] float curDashCool;
@@ -57,6 +58,8 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && canControl && inputX != 0 && isWall && !isGround) StartCoroutine(WallJump());
         //땅에 있고 스페이스바를 누르면 점프 실행
         else if (Input.GetKeyDown(KeyCode.Space) && canControl && isGround) Jump();
+
+
     }
 
     void Move()
@@ -72,6 +75,12 @@ public class PlayerScript : MonoBehaviour
 
         if (isWall) curVelocityY = -wallSpeed;
         else curVelocityY = rigid.velocity.y;
+
+        if (rigid.velocity.y > 0) ani.SetBool("JumpUp", true);
+        else ani.SetBool("JumpUp", false);
+
+        if (inputX < 0) sprite.flipX = true;
+        else if (inputX > 0) sprite.flipX = false;
 
         rigid.velocity = new Vector2(inputX * moveSpeed, curVelocityY);
     }

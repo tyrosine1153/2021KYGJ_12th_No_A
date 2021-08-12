@@ -142,6 +142,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 2690624684813938390, guid: dfd7a460cacc3c941b175832b688e6a2, type: 3}
+    - target: {fileID: 1408275483, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 768902261632811089, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -194,6 +198,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4698285733863387033, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 453582136}
     - target: {fileID: 4698285733863387033, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
       propertyPath: gameManager
       value: 
@@ -467,6 +475,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387608590}
   m_CullTransparentMesh: 1
+--- !u!212 &453582136 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1270618216, guid: 6385a6ffa1c623a4286d81f1c2dc5a53, type: 3}
+  m_PrefabInstance: {fileID: 141551192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &456033352
 GameObject:
   m_ObjectHideFlags: 0

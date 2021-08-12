@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Jump
+  m_Name: Jump_Down
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: -0.511, z: 0}
+        value: {x: 0, y: -0.312, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -36,7 +36,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 8036393649787614078, guid: dfd7a460cacc3c941b175832b688e6a2, type: 3}
+      value: {fileID: -4103607723675535454, guid: dfd7a460cacc3c941b175832b688e6a2, type: 3}
     attribute: m_Sprite
     path: GameObject
     classID: 212
@@ -63,7 +63,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping:
-    - {fileID: 8036393649787614078, guid: dfd7a460cacc3c941b175832b688e6a2, type: 3}
+    - {fileID: -4103607723675535454, guid: dfd7a460cacc3c941b175832b688e6a2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -109,7 +109,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.511
+        value: -0.312
         inSlope: 0
         outSlope: 0
         tangentMode: 136
