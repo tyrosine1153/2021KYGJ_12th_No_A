@@ -76,7 +76,7 @@ public class GameManager : MonoSingleton<GameManager>
         curItem[item] = true;
         // 대충 효과
 
-        print($"Player Get Item! {curItem.Keys}");
+        print($"Player Get Item! {item}");
     }
 
     public bool IsClearableItem()

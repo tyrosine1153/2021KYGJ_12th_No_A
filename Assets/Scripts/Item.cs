@@ -1,6 +1,8 @@
 ﻿public enum Item
 {
-    Item0,
-    Item1,
-    Item2
+    Wire,
+    Screw,
+    Toolbox,
+    Machine,
+    Cogwheel,
 }

@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50b33aa88ed05f469d4bc9398021d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clearItems: 

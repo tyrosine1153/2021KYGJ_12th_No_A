@@ -7,7 +7,7 @@ using UnityEngine;
 public class ItemScript : MonoBehaviour
 {
     private Item _itemInfo;
-    private bool _isGotten;
+    private bool _canGetItem;
 
     public Item ItemInfo
     {
@@ -16,17 +16,23 @@ public class ItemScript : MonoBehaviour
 
     private void Start()
     {
-        _isGotten = false;
+        _canGetItem = false;
+        Invoke(nameof(CanGetItem), 0.5f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // 아이템 먹기
-        if (collision.transform.CompareTag("Player") && !_isGotten)
+        if (collision.transform.CompareTag("Player") && _canGetItem)
         {
             GetItem();
-            _isGotten = true;
+            _canGetItem = false;
         }
+    }
+
+    private void CanGetItem()
+    {
+        _canGetItem = true;
     }
     
     private void Move(){ }
@@ -37,5 +43,6 @@ public class ItemScript : MonoBehaviour
         GameManager.Instance.GetItem(_itemInfo);
         
         // Animation
+        Destroy(gameObject);
     }
 }
