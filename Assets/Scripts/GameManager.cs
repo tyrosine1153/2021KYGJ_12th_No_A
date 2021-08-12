@@ -52,7 +52,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         if(curHP == 0)
         {
-            // 대충 뒤지는 효과
+            Die();
         }
         print($"Player Get Damaged! HP : {curHP}/{maxHP}");
     }
@@ -71,6 +71,19 @@ public class GameManager : MonoSingleton<GameManager>
         print($"Player Get Healed! HP : {curHP}/{maxHP}");
     }
 
+    public void Die()
+    {
+        curHP = 0;
+        print($"Player is Dead! HP : {curHP}/{maxHP}");
+        
+        Invoke(nameof(GameOver), 3f);
+    }
+
+    public void GameOver()
+    {
+        print("Game Over!");
+    }
+    
     public void GetItem(Item item)
     {
         curItem[item] = true;
