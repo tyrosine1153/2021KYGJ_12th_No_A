@@ -10,6 +10,7 @@ public class GameManager : MonoSingleton<GameManager>
     // 피격 후 일정 시간동안 피격 무효
     public float maxDamageTime;
     public float curDamageTime;
+    public bool isInSafeZone;
     
     public Item[] clearItems;
     private Dictionary<Item, bool> curItem;
@@ -18,6 +19,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         curHP = maxHP;
         curDamageTime = maxDamageTime;
+        isInSafeZone = false;
 
         Invoke(nameof(InitItem), 0.5f);
     }
@@ -48,7 +50,7 @@ public class GameManager : MonoSingleton<GameManager>
             curDamageTime = maxDamageTime;
             // 대충 효과
         }
-        else
+        if(curHP == 0)
         {
             // 대충 뒤지는 효과
         }

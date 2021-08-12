@@ -23,6 +23,21 @@ TextureImporter:
   - first:
       213: -8009143331685977357
     second: tempsprite_6
+  - first:
+      213: 83731147374323592
+    second: tempsprite_7
+  - first:
+      213: -2417603172651141856
+    second: tempsprite_8
+  - first:
+      213: -8497945143968697999
+    second: tempsprite_9
+  - first:
+      213: -4660185575953907810
+    second: tempsprite_10
+  - first:
+      213: 3333505642817589559
+    second: tempsprite_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -116,7 +131,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
+        y: 1024
         width: 512
         height: 512
       alignment: 0
@@ -137,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 512
+        y: 1024
         width: 512
         height: 512
       alignment: 0
@@ -158,7 +173,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 512
+        y: 1024
         width: 512
         height: 512
       alignment: 0
@@ -179,7 +194,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1536
-        y: 512
+        y: 1024
         width: 512
         height: 512
       alignment: 0
@@ -200,7 +215,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 512
         width: 512
         height: 512
       alignment: 0
@@ -221,7 +236,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 0
+        y: 512
         width: 512
         height: 512
       alignment: 0
@@ -242,7 +257,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 0
+        y: 512
         width: 512
         height: 512
       alignment: 0
@@ -254,6 +269,111 @@ TextureImporter:
       bones: []
       spriteID: 3f23ba7f29ec9d090800000000000000
       internalID: -8009143331685977357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tempsprite_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 887e1efe809792100800000000000000
+      internalID: 83731147374323592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tempsprite_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 025754639b2f27ed0800000000000000
+      internalID: -2417603172651141856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tempsprite_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1717df46aeb311a80800000000000000
+      internalID: -8497945143968697999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tempsprite_10
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9f3eddc8e1b35fb0800000000000000
+      internalID: -4660185575953907810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tempsprite_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73117e078bdf24e20800000000000000
+      internalID: 3333505642817589559
       vertices: []
       indices: 
       edges: []
