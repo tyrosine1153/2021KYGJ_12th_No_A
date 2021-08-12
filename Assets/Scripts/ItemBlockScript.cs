@@ -6,16 +6,20 @@ using UnityEngine;
 // 아이템 이동 (명세에 없음), 효과, 생성 조건
 public class ItemBlockScript : MonoBehaviour
 {
-    private static GameObject ItemPrefab;
+    private static GameObject[] ItemPrefabs;
     [SerializeField] private Item itemInfo;
     [SerializeField] private bool hasItem;
 
 
     void Start()
     {
-        if (ItemPrefab == null)
+        if (ItemPrefabs == null)
         {
-            ItemPrefab = Resources.Load<GameObject>("Item");
+            ItemPrefabs = new GameObject[5];
+            for (int i = 0; i < ItemPrefabs.Length; i++)
+            {
+                ItemPrefabs[i] = Resources.Load<GameObject>($"{(Item)i}Item");
+            }
         }
 
         hasItem = true;
@@ -39,7 +43,7 @@ public class ItemBlockScript : MonoBehaviour
     private void CreateItemObj()
     {
         // 아이탬 생성 방식따라 수정해야 함
-        var item = Instantiate(ItemPrefab, transform);
+        var item = Instantiate(ItemPrefabs[(int)itemInfo], transform);
         var itemScript = item.GetComponent<ItemScript>();
 
         itemScript.ItemInfo = itemInfo;
