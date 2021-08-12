@@ -196,8 +196,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasGottenDamaged: 0
   damageRate: 1
-  minInclusive: 0
-  maxInclusive: 0
+  redSprite: {fileID: 0}
+  minInclusive: 4.5
+  maxInclusive: 8.4
 --- !u!50 &5132905767617343466
 Rigidbody2D:
   serializedVersion: 4
