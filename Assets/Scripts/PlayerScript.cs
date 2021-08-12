@@ -29,6 +29,7 @@ public class PlayerScript : MonoBehaviour
 
     [Header("Ground")]
     [SerializeField] float GroundLength;
+    [SerializeField] GameObject smoke;
 
     [Header("Wall")]
     [SerializeField] Vector2 wallJumpForce;
@@ -51,7 +52,7 @@ public class PlayerScript : MonoBehaviour
 
         //데쉬 쿨타임이 돌았고 Shift누르면 데쉬
         if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && !isGround && inputX != 0) StartCoroutine(Dash());
-        if(curDashCool < 0 && Input.GetKeyDown(KeyCode.S) && isGround && inputX != 0) StartCoroutine(Roll());
+        if(curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && isGround && inputX != 0) StartCoroutine(Roll());
 
         if (canControl) Move();
 
@@ -87,6 +88,7 @@ public class PlayerScript : MonoBehaviour
 
     void Jump()
     {
+        Smoke();
         rigid.AddForce(new Vector2(0, jumpPower));
     }
 
@@ -134,6 +136,14 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         canControl = true;
+    }
+
+    public void Smoke()
+    {
+        if (inputX > 0)
+            Instantiate(smoke, transform.position, Quaternion.identity);
+        else
+            Instantiate(smoke, transform.position, Quaternion.identity).transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

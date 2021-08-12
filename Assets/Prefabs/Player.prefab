@@ -312,6 +312,7 @@ MonoBehaviour:
   dashingTime: 0.2
   rollingTime: 0.2
   GroundLength: 0.98
+  smoke: {fileID: 4320332509427022173, guid: 3c0e06a56b4555640bc8d21a6138def1, type: 3}
   wallJumpForce: {x: 1000, y: 400}
   wallSpeed: 1
   wallLength: 0.6
