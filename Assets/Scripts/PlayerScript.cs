@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    [Header("Managers")]
+    [SerializeField] GameManager gameManager;
+
     [Header("Inspector")]
     [SerializeField] Rigidbody2D rigid;
     [SerializeField] Animator ani;
@@ -30,6 +33,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] Vector2 wallJumpForce;
     [SerializeField] float wallSpeed;
     [SerializeField] float wallLength;
+
+    [Header("Spring")]
+    [SerializeField] float springPower;
 
     [Header("RIgid")]
     [SerializeField] float curVelocityY;
@@ -60,7 +66,7 @@ public class PlayerScript : MonoBehaviour
         ani.SetBool("IsGround", isGround);
         ani.SetBool("Wall", isWall);
 
-        Debug.DrawRay(new Vector3(transform.position.x -0.4999f, transform.position.y - 0.6f, 0), transform.right, Color.red);
+        Debug.DrawRay(new Vector3(transform.position.x -0.49f, transform.position.y - 0.6f, 0), transform.right, Color.red);
         isWall = Physics2D.Raycast(transform.position, new Vector3(inputX, 0, 0), wallLength, LayerMask.GetMask("Ground"));
         isGround = Physics2D.Raycast(new Vector3(transform.position.x - 0.49f, transform.position.y - 0.6f, 0), new Vector3(1, 0, 0), GroundLength, LayerMask.GetMask("Ground"));
 
@@ -119,5 +125,20 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         canControl = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Spring" && rigid.velocity.y < 0)
+        {
+            rigid.velocity = new Vector2(0, 0);
+            rigid.AddForce(new Vector2(0, springPower));
+        }
+
+
+        if (collision.tag == "Item")
+        {
+            //아이템 넣는 함수
+        }
     }
 }

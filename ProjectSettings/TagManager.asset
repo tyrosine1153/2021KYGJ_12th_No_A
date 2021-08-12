@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Spring
+  - Obstacle
+  - Item
   layers:
   - Default
   - TransparentFX
