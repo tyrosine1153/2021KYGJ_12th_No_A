@@ -19,7 +19,7 @@ public class TextBoxScript : MonoSingleton<TextBoxScript>
     private bool _isTyping;
     private bool _isFliped;
 
-    public Transform playerTransform;
+    [SerializeField] private Transform playerTransform;
     
     void Start()
     {

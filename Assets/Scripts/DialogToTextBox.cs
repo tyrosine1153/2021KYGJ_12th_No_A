@@ -6,8 +6,7 @@ using UnityEngine;
 public class DialogToTextBox : MonoBehaviour
 {
     [SerializeField] private bool isDialogueEnd;
-    [TextArea] 
-    public string dialogueText = "";
+    [TextArea] public string dialogueText = "";
     
     void Start()
     {
