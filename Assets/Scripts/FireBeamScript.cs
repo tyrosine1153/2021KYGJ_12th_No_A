@@ -8,6 +8,7 @@ public class FireBeamScript : MonoBehaviour
 {
     [SerializeField] private bool hasGottenDamaged;
     [SerializeField] private int damageRate = 1;
+    public GameObject redSprite;
 
     [Range(4.5f, 60f)] public float minInclusive;
     [Range(4.5f, 60f)] public float maxInclusive;
@@ -20,6 +21,7 @@ public class FireBeamScript : MonoBehaviour
     private void Start()
     {
         hasGottenDamaged = false;
+        redSprite.SetActive(false);
         
         _animator = GetComponent<Animator>();
 
@@ -35,8 +37,17 @@ public class FireBeamScript : MonoBehaviour
         if (!hasGottenDamaged && !GameManager.Instance.isInSafeZone)
         {
             hasGottenDamaged = true;
+            StartCoroutine(Display());
             Invoke(nameof(GetDamagedHP), 4.5f);
         }
+    }
+
+    IEnumerator Display()
+    {
+        yield return new WaitForSeconds(4f);
+        redSprite.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        redSprite.SetActive(false);
     }
     
     private void GetDamagedHP()
