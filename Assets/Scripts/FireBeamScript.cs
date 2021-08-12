@@ -2,20 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FireBeamScript : MonoBehaviour
 {
     [SerializeField] private bool hasGottenDamaged;
     [SerializeField] private int damageRate = 1;
-    
-    private Animator _animator;
-    private static readonly int Appear = Animator.StringToHash("Appear");
 
+    [Range(4.5f, 60f)] public float minInclusive;
+    [Range(4.5f, 60f)] public float maxInclusive;
+
+    private Animator _animator;
+    
+    private static readonly int Appear = Animator.StringToHash("Appear");
+    private Coroutine _coroutine;
+    
     private void Start()
     {
         hasGottenDamaged = false;
         
         _animator = GetComponent<Animator>();
+
+        _coroutine = StartCoroutine(nameof(ShootFireBeamCyclical));
     }
 
     public void ShootFireBeam()
@@ -35,6 +43,19 @@ public class FireBeamScript : MonoBehaviour
     {
         GameManager.Instance.GetDamagedHP(damageRate);
         // 대충 animation
+    }
+
+    IEnumerator ShootFireBeamCyclical()
+    {
+        while (true)
+        {
+            var time = Random.Range(minInclusive, maxInclusive);
+            print($"FireBeam time : {time}");
+            yield return new WaitForSeconds(time);
+            
+            ShootFireBeam();
+            yield return new WaitForSeconds(4.5f);
+        }
     }
 
     // 평소엔 투명
