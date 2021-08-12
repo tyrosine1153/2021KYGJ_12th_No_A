@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextBoxScript : MonoBehaviour
+public class TextBoxScript : MonoSingleton<TextBoxScript>
 {
     const float TypingTime = 0.1f;
     
