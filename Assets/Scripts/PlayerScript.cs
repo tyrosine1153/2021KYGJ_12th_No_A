@@ -55,7 +55,6 @@ public class PlayerScript : MonoBehaviour
         if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && !isGround && inputX != 0) StartCoroutine(Dash());
         if(curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && isGround && inputX != 0) StartCoroutine(Roll());
 
-        if (canControl && isGround && Input.GetKey(KeyCode.S)) Sit();
         if (canControl) Move();
 
         if (Input.GetKeyDown(KeyCode.Space) && canControl && inputX != 0 && isWall && !isGround) StartCoroutine(WallJump());
@@ -83,13 +82,18 @@ public class PlayerScript : MonoBehaviour
         if (inputX < 0) sprite.flipX = true;
         else if (inputX > 0) sprite.flipX = false;
 
-        rigid.velocity = new Vector2(inputX * moveSpeed, curVelocityY);
-    }
-
-    void Sit()
-    {
-        isSit = true;
-        ani.SetBool("Sit", true);
+        if (Input.GetKey(KeyCode.S) && isGround && inputX == 0)
+        {
+            isSit = true;
+            ani.SetBool("Sit", true);
+            rigid.velocity = new Vector2(0, 0);
+        }
+        else
+        {
+            isSit = false;
+            ani.SetBool("Sit", false);
+            rigid.velocity = new Vector2(inputX * moveSpeed, curVelocityY);
+        }
     }
 
     void Jump()
