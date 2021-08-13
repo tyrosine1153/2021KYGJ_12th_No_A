@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  maxHP: 5
+  maxHP: 3
   curHP: 0
   maxDamageTime: 5
   curDamageTime: 0
