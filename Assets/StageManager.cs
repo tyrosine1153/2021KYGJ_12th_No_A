@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class StageManager : PersistentSingleton<StageManager>
 {
-    [SerializeField] int curStageNum;
+    public int curStageNum;
     [SerializeField] Text curStageText;
 
     [SerializeField] string[] mapNames;

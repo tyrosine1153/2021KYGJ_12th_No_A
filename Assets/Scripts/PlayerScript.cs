@@ -98,6 +98,7 @@ public class PlayerScript : MonoBehaviour
 
     void Jump()
     {
+        if (isWall) return;
         Smoke();
         rigid.AddForce(new Vector2(0, jumpPower));
     }
