@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoSingleton<GameManager>
 {
     [SerializeField] private int maxHP = 5;
-    [SerializeField] private int curHP;
+    public int curHP;
     
     // 피격 후 일정 시간동안 피격 무효
     public float maxDamageTime;
@@ -48,6 +48,7 @@ public class GameManager : MonoSingleton<GameManager>
         {
             curHP -= damagePoint;
             curDamageTime = maxDamageTime;
+            InGameUiManager.Instance.PlayerHeartUpdate();
             // 대충 효과
         }
         if(curHP == 0)

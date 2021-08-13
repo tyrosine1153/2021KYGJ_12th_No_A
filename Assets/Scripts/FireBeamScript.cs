@@ -62,6 +62,7 @@ public class FireBeamScript : MonoBehaviour
         {
             var time = Random.Range(minInclusive, maxInclusive);
             print($"FireBeam time : {time}");
+            InGameUiManager.Instance.BeamTimer(time);
             yield return new WaitForSeconds(time);
             
             ShootFireBeam();
