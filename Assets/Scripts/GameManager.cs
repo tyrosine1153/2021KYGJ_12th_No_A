@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [SerializeField] private int maxHP = 5;
+    public int maxHP = 5;
     public int curHP;
     
     // 피격 후 일정 시간동안 피격 무효

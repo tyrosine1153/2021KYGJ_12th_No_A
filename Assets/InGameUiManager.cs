@@ -22,8 +22,8 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
 
     public void PlayerHeartUpdate()
     {
-        for (int i = 0; i < hearts.Length; i++)
-            hearts[i].SetActive(true);
+        for (int i = 0; i < GameManager.Instance.maxHP; i++)
+            hearts[i].SetActive(false);
         for (int i = 0; i < GameManager.Instance.curHP; i++)
             hearts[i].SetActive(true);
     }
