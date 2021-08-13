@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2866486660733620443
 RectTransform:
   m_ObjectHideFlags: 0
@@ -332,7 +332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6138613042026371969
 RectTransform:
   m_ObjectHideFlags: 0
@@ -533,10 +533,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6138613041488356747}
     m_Modifications:
+    - target: {fileID: 8662616131805147288, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 4d3b4aa71f3c2364a9729647996efa90, type: 3}
+    - target: {fileID: 8662616131805147288, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662616131805147288, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662616131805147288, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8662616131900784008, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8662616131900784010, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662616131900784010, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8662616131900784010, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
       propertyPath: m_Color.a
       value: 0.74509805
