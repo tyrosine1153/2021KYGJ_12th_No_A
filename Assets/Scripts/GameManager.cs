@@ -13,7 +13,7 @@ public class GameManager : MonoSingleton<GameManager>
     public bool isInSafeZone;
     
     public Item[] clearItems;
-    private Dictionary<Item, bool> curItem;
+    public Dictionary<Item, bool> curItem;
 
     void Start()
     {
