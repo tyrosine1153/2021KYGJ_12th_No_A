@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : PersistentSingleton<PlayerScript>
 {
     [Header("Managers")]
     [SerializeField] GameManager gameManager;
@@ -45,6 +45,8 @@ public class PlayerScript : MonoBehaviour
 
     [Header("Axis")]
     [SerializeField] float inputX;
+
+
 
     private void Update()
     {
