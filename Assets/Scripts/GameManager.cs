@@ -107,7 +107,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void StageClear()
     {
-        print("Success to Stage Clear!");
+        StageManager.Instance.Fade(true);
     }
 
     [ContextMenu("정보")]

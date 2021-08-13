@@ -1153,7 +1153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &734363201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1171,6 +1171,8 @@ MonoBehaviour:
   curHP: 0
   maxDamageTime: 5
   curDamageTime: 0
+  isInSafeZone: 0
+  clearItems: 
 --- !u!4 &734363202
 Transform:
   m_ObjectHideFlags: 0
@@ -2237,6 +2239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4687c311bbfd8e64cbbe62b4c74ce0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   curStageNum: 0
   curStageText: {fileID: 796439925}
   mapNames:

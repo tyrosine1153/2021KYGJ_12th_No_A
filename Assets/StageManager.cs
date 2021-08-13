@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StageManager : MonoBehaviour
+public class StageManager : PersistentSingleton<StageManager>
 {
     [SerializeField] int curStageNum;
     [SerializeField] Text curStageText;
@@ -25,6 +25,6 @@ public class StageManager : MonoBehaviour
 
     public void GoToNextMap()
     {
-        SceneManager.LoadScene(curStageNum + "Stage");
+        SceneManager.LoadScene("Stage_" + curStageNum + "(min)");
     }
 }

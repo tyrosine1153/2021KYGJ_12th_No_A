@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     [Header("PlayerState")]
     public bool isGround;
     [SerializeField] bool isWall;
+    public bool isSit;
     public bool canControl;
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpPower;
@@ -54,13 +55,12 @@ public class PlayerScript : MonoBehaviour
         if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && !isGround && inputX != 0) StartCoroutine(Dash());
         if(curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && isGround && inputX != 0) StartCoroutine(Roll());
 
+        if (canControl && isGround && Input.GetKey(KeyCode.S)) Sit();
         if (canControl) Move();
 
         if (Input.GetKeyDown(KeyCode.Space) && canControl && inputX != 0 && isWall && !isGround) StartCoroutine(WallJump());
         //땅에 있고 스페이스바를 누르면 점프 실행
         else if (Input.GetKeyDown(KeyCode.Space) && canControl && isGround) Jump();
-
-
     }
 
     void Move()
@@ -84,6 +84,12 @@ public class PlayerScript : MonoBehaviour
         else if (inputX > 0) sprite.flipX = false;
 
         rigid.velocity = new Vector2(inputX * moveSpeed, curVelocityY);
+    }
+
+    void Sit()
+    {
+        isSit = true;
+        ani.SetBool("Sit", true);
     }
 
     void Jump()
