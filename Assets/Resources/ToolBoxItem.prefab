@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3b7861169b4e16949a9470eb0e9000c2, type: 3}
     - target: {fileID: 1904473660167553504, guid: 61716a29c344c814ca30c053bec91dea, type: 3}
       propertyPath: m_Name
-      value: Item
+      value: ToolBoxItem
       objectReference: {fileID: 0}
     - target: {fileID: 3303957152626461415, guid: 61716a29c344c814ca30c053bec91dea, type: 3}
       propertyPath: m_RootOrder
@@ -58,6 +58,18 @@ PrefabInstance:
     - target: {fileID: 3303957152626461415, guid: 61716a29c344c814ca30c053bec91dea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071117289825096384, guid: 61716a29c344c814ca30c053bec91dea, type: 3}
+      propertyPath: itemInfo
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809739098656155861, guid: 61716a29c344c814ca30c053bec91dea, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.09375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809739098656155861, guid: 61716a29c344c814ca30c053bec91dea, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.09375
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61716a29c344c814ca30c053bec91dea, type: 3}

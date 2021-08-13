@@ -6,33 +6,33 @@ using UnityEngine;
 // 아이템 이동 (명세에 없음), 효과
 public class ItemScript : MonoBehaviour
 {
-    private Item _itemInfo;
-    private bool _canGetItem;
+    [SerializeField] private Item itemInfo;
+    [SerializeField] private bool canGetItem;
 
     public Item ItemInfo
     {
-        set => _itemInfo = value;
+        set => itemInfo = value;
     }
 
     private void Start()
     {
-        _canGetItem = false;
+        canGetItem = false;
         Invoke(nameof(CanGetItem), 0.5f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // 아이템 먹기
-        if (collision.transform.CompareTag("Player") && _canGetItem)
+        if (collision.transform.CompareTag("Player") && canGetItem)
         {
             GetItem();
-            _canGetItem = false;
+            canGetItem = false;
         }
     }
 
     private void CanGetItem()
     {
-        _canGetItem = true;
+        canGetItem = true;
     }
     
     private void Move(){ }
@@ -40,7 +40,7 @@ public class ItemScript : MonoBehaviour
     private void GetItem()
     {
         // 아이템 개수가 구현 되었는지는 확정이 안돼서 사용안함
-        GameManager.Instance.GetItem(_itemInfo);
+        GameManager.Instance.GetItem(itemInfo);
         
         // Animation
         Destroy(gameObject);

@@ -7,7 +7,7 @@ public class ClearPointScript : MonoBehaviour
 {
     public Item[] clearItems;
 
-    private void Awake()
+    private void Start()
     {
         GameManager.Instance.clearItems = clearItems;
     }
