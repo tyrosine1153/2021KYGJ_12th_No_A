@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasGottenDamaged: 0
-  damageRate: 1
+  damageRate: 3
   redSprite: {fileID: 0}
   minInclusive: 4.5
   maxInclusive: 8.4

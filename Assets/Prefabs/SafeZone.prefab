@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7198859238269649953}
   - component: {fileID: 7198859238269649952}
   - component: {fileID: 7198859238269649956}
-  - component: {fileID: 7198859238269649954}
   - component: {fileID: 7198859238269649955}
   - component: {fileID: 7198859238269649957}
   m_Layer: 0
@@ -382,54 +381,10 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!66 &7198859238269649954
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7198859238269649966}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
-  m_GenerationType: 0
-  m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 7198859238269649956}
-    m_ColliderPaths:
-    - - X: 159999900
-        Y: -9999959
-      - X: 159999900
-        Y: -30000041
-      - X: 159999959
-        Y: -30000100
-      - X: 270000041
-        Y: -30000100
-      - X: 270000100
-        Y: -30000041
-      - X: 270000100
-        Y: -9999959
-      - X: 270000041
-        Y: -9999900
-      - X: 159999959
-        Y: -9999900
-  m_CompositePaths:
-    m_Paths:
-    - - {x: 26.999975, y: -3.00001}
-      - {x: 26.999975, y: -0.99999}
-      - {x: 15.99999, y: -1.0000252}
-      - {x: 16.000027, y: -3.00001}
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
 --- !u!50 &7198859238269649955
 Rigidbody2D:
   serializedVersion: 4
