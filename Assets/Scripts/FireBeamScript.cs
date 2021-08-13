@@ -34,26 +34,20 @@ public class FireBeamScript : MonoBehaviour
         
         _animator.SetTrigger(Appear);
         
-        if (!hasGottenDamaged && !GameManager.Instance.isInSafeZone)
+        if (!hasGottenDamaged)
         {
             hasGottenDamaged = true;
-            StartCoroutine(Display());
             Invoke(nameof(GetDamagedHP), 4.5f);
         }
     }
 
-    IEnumerator Display()
-    {
-        yield return new WaitForSeconds(4f);
-        redSprite.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        redSprite.SetActive(false);
-    }
-    
     private void GetDamagedHP()
     {
-        GameManager.Instance.GetDamagedHP(damageRate);
-        // 대충 animation
+        if (!GameManager.Instance.isInSafeZone)
+        {
+            GameManager.Instance.GetDamagedHP(damageRate);
+            // 대충 animation
+        }
     }
 
     IEnumerator ShootFireBeamCyclical()
