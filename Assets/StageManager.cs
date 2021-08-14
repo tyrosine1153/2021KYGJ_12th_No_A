@@ -47,7 +47,7 @@ public class StageManager : PersistentSingleton<StageManager>
     // 씬 다시 시작
     public void LoadCurrentScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LoadStage(curStageNum);
     }
 
     // 처음부터
@@ -67,5 +67,22 @@ public class StageManager : PersistentSingleton<StageManager>
         {
             print($"StageData is wrong! StageData : {StageData}");
         }
+    }
+
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadScene(0);
+    }
+    
+    public void LoadStage(int stageNum)
+    {
+        curStageNum = stageNum;
+        // SceneManager.LoadScene($"Stage_{curStageNum}(min)");
+
+        StageData = curStageNum;
+        PlayerPrefs.SetInt("StageData", StageData);
+        print($"Success to Save StageData! stageData : {StageData}");
+        
+        Fade(false);
     }
 }

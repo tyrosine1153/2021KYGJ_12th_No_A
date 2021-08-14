@@ -51,7 +51,7 @@ public class GameManager : MonoSingleton<GameManager>
             InGameUiManager.Instance.PlayerHeartUpdate();
             // 대충 효과
         }
-        if(curHP == 0)
+        if(curHP <= 0)
         {
             Die();
         }
@@ -77,12 +77,14 @@ public class GameManager : MonoSingleton<GameManager>
         curHP = 0;
         print($"Player is Dead! HP : {curHP}/{maxHP}");
         
+        InGameUiManager.Instance.ShowGameOver();
         Invoke(nameof(GameOver), 3f);
     }
 
     public void GameOver()
     {
         print("Game Over!");
+        InGameUiManager.Instance.RetryAskActive(true);
     }
     
     public void GetItem(Item item)

@@ -6,27 +6,21 @@ using UnityEngine.UI;
 public class ItemListScript : MonoBehaviour
 {
     [SerializeField] Image[] itemImages;
+    private readonly Color existColor = new Color(1, 1, 1, 1);
+    private readonly Color notExistColor = new Color(1, 1, 1, 0.5f);
+
 
     private void Start()
     {
-        StartCoroutine(Delay());
+        Invoke(nameof(ItemSlotInit), 0.2f);
     }
 
-    IEnumerator Delay()
+    public void ItemSlotInit()
     {
-        yield return new WaitForSeconds(1f);
-
-        ItemSlotUpdate();
-    }
-
-    public void ItemSlotUpdate()
-    {
-        for (int i = 0; i < itemImages.Length; i++)
+        var curItem = GameManager.Instance.curItem;
+        foreach (var item in curItem)
         {
-            if (GameManager.Instance.curItem[(Item)i])
-                itemImages[i].color = new Color(1, 1, 1, 0.5f);
-            else
-                itemImages[i].color = new Color(1, 1, 1, 1);
+            itemImages[(int) item.Key].color = item.Value ? existColor : notExistColor;
         }
     }
 }
