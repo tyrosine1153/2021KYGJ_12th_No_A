@@ -4,21 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class AudioManager : PersistentSingleton<AudioManager>
+public class EffectSoundManager : PersistentSingleton<EffectSoundManager>
 {
     [SerializeField] private AudioClip[] effectAudioClips;
-    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _walkAudioSource;
+    [SerializeField] private AudioSource _effectAudioSource;
     private Coroutine _coroutine;
-    
-    private void Start()
-    {
-        _audioSource = gameObject.GetComponent<AudioSource>();
-    }
 
     public void PlayEffect(int clipNum)
     {
-        _audioSource.clip = effectAudioClips[clipNum];
-        _audioSource.Play();
+        print("??????????????????????");
+        _effectAudioSource.clip = effectAudioClips[clipNum];
+        _effectAudioSource.Play();
     }
 
     public void FootWalkStart()
@@ -30,8 +27,8 @@ public class AudioManager : PersistentSingleton<AudioManager>
     {
         while (true)
         {
-            _audioSource.clip = effectAudioClips[Random.Range(0, 4)];
-            _audioSource.Play();
+            _walkAudioSource.clip = effectAudioClips[Random.Range(0, 4)];
+            _walkAudioSource.Play();
             
             yield return new WaitForSeconds(0.5f);
         }

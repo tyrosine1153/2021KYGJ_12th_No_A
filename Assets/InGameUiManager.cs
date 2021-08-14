@@ -63,7 +63,7 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
             if(beamCoolTime >= 0)
             {
                 beamCoolTime -= Time.deltaTime;
-                warningText.text = $"태양열까지 남은시간:{Mathf.Floor(beamCoolTime)}초";
+                warningText.text = $"열폭풍까지 남은시간:{Mathf.Floor(beamCoolTime)}초";
                 if(beamCoolTime < 0)
                     warningText.text = $"0초";
             }
@@ -76,7 +76,7 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
                 warningText.text = $"파도와의 거리:{distance}M";
                 if (distance <= 5)
                 {
-                    AudioManager.Instance.PlayEffect(8);
+                    EffectSoundManager.Instance.PlayEffect(8);
                 }
             }
         }

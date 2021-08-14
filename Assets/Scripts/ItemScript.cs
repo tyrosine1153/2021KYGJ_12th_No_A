@@ -27,6 +27,7 @@ public class ItemScript : MonoBehaviour
         {
             GetItem();
             canGetItem = false;
+            EffectSoundManager.Instance.PlayEffect(9);
         }
     }
 

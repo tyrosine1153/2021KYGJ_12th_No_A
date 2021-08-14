@@ -45,9 +45,10 @@ public class FireBeamScript : MonoBehaviour
     {
         if (!GameManager.Instance.isInSafeZone)
         {
+            print("!!!!!!!!!!!!!!!!!!");
             GameManager.Instance.GetDamagedHP(damageRate);
-            AudioManager.Instance.PlayEffect(7);
         }
+        EffectSoundManager.Instance.PlayEffect(7);
     }
 
     IEnumerator ShootFireBeamCyclical()
