@@ -48,9 +48,8 @@ public class GameManager : MonoSingleton<GameManager>
         {
             curHP -= damagePoint;
             curDamageTime = maxDamageTime;
-            InGameUiManager.Instance.PlayerHeartUpdate();
-            // 대충 효과
         }
+        InGameUiManager.Instance.PlayerHeartUpdate();
         if(curHP <= 0)
         {
             Die();

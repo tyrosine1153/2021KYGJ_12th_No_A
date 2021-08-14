@@ -30,6 +30,7 @@ public class ClearPointScript : MonoBehaviour
         {
             // 대충 아이템이 부족하다는 효과
             print("Fail to Stage Clear!");
+            TextBoxScript.Instance.TypeText("재료가 부족해.");
         }
     }
 }
