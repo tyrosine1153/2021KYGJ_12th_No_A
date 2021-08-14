@@ -20,11 +20,12 @@ public class UiManager : MonoBehaviour
 
     public void StartNewGame()
     {
+        StageManager.Instance.StartNewGame();
         prologueOb.SetActive(true);
     }
     public void Continue()
     {
-
+        StageManager.Instance.Continue();
     }
     public void ExitGame()
     {
