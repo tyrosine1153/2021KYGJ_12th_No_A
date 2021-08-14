@@ -565,6 +565,18 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.74509805
       objectReference: {fileID: 0}
+    - target: {fileID: 8662616131900784010, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662616131900784010, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662616131900784010, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8662616131900784116, guid: 7c0d92e53955bab409e95c3d6a1c9d39, type: 3}
       propertyPath: m_Name
       value: TextBox
