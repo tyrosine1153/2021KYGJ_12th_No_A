@@ -13,7 +13,6 @@ public class EffectSoundManager : PersistentSingleton<EffectSoundManager>
 
     public void PlayEffect(int clipNum)
     {
-        print("??????????????????????");
         _effectAudioSource.clip = effectAudioClips[clipNum];
         _effectAudioSource.Play();
     }

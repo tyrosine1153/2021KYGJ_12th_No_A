@@ -21,6 +21,8 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
     [SerializeField] private Animator gameOverAnimator;
     private static readonly int FadeIn = Animator.StringToHash("FadeIn");
 
+    private Transform playeTransform;
+
     private void Start()
     {
         curStageNum = StageManager.Instance.curStageNum;
@@ -29,7 +31,8 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
         
         Invoke(nameof(ItemSlotUpdate), 0.2f);
 
-
+        playeTransform = PlayerScript.Instance.gameObject.GetComponent<Transform>();
+        
         RetryAskActive(false);
     }
     
@@ -72,7 +75,7 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
         {
             if (beamCoolTime >= 0)
             {
-                float distance = Mathf.Floor(transform.position.x - wave.transform.position.x) / 2;
+                float distance = Mathf.Floor( playeTransform.position.x - wave.transform.position.x) / 2;
                 warningText.text = $"파도와의 거리:{distance}M";
                 if (distance <= 5)
                 {
