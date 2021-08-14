@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8991913704111963290}
         m_TargetAssemblyTypeName: InGameUiManager, Assembly-CSharp
         m_MethodName: LoadCurrentScene
         m_Mode: 1
@@ -1654,7 +1654,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8991913704111963290}
         m_TargetAssemblyTypeName: InGameUiManager, Assembly-CSharp
         m_MethodName: LoadMainMenuScene
         m_Mode: 1

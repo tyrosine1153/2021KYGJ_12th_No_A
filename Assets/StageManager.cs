@@ -25,6 +25,7 @@ public class StageManager : PersistentSingleton<StageManager>
 
     public void Fade(bool isNextLv)
     {
+        if (curStageNum <= 0) curStageNum = StageData; 
         if (isNextLv)
         {
             curStageNum++;
@@ -61,6 +62,7 @@ public class StageManager : PersistentSingleton<StageManager>
     {
         if (StageData > 0)
         {
+            curStageNum = StageData;
             SceneManager.LoadScene(StageData);
         }
         else
