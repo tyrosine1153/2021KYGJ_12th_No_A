@@ -14,10 +14,13 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
     [SerializeField] int curStageNum;
 
     [SerializeField] Image[] itemImages;
-    private readonly Color existColor = new Color(1, 1, 1, 1);
-    private readonly Color notExistColor = new Color(1, 1, 1, 0.5f);
+    private static readonly Color existColor = new Color(1, 1, 1, 1);
+    private static readonly Color notExistColor = new Color(1, 1, 1, 0.5f);
 
-    
+    [SerializeField] private GameObject retryAsk;
+    [SerializeField] private Animator gameOverAnimator;
+    private static readonly int FadeIn = Animator.StringToHash("FadeIn");
+
     private void Start()
     {
         curStageNum = StageManager.Instance.curStageNum;
@@ -25,6 +28,9 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
         if (curStageNum == 2) wave = GameObject.Find("Wave_group");
         
         Invoke(nameof(ItemSlotUpdate), 0.2f);
+
+
+        RetryAskActive(false);
     }
     
 
@@ -58,18 +64,38 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
                 if(beamCoolTime >= 0)
                 {
                     beamCoolTime -= Time.deltaTime;
-                    warningText.text = warningText.text = $"태양열까지 남은시간:{Mathf.Floor(beamCoolTime)}초";
+                    warningText.text = $"태양열까지 남은시간:{Mathf.Floor(beamCoolTime)}초";
                     if(beamCoolTime < 0)
-                        warningText.text = warningText.text = $"0초";
+                        warningText.text = $"0초";
                 }
                 break;
             case 2:
                 if (beamCoolTime >= 0)
                 {
                     float distance = Mathf.Floor(transform.position.x - wave.transform.position.x) / 2;
-                    warningText.text = warningText.text = $"파도와의 거리:{distance}M";
+                    warningText.text = $"파도와의 거리:{distance}M";
                 }
                 break;
         }
+    }
+
+    public void LoadMainMenuScene()
+    {
+        StageManager.Instance.LoadMainMenuScene();
+    }
+
+    public void LoadCurrentScene()
+    {
+        StageManager.Instance.LoadCurrentScene();
+    }
+
+    public void ShowGameOver()
+    {
+        gameOverAnimator.SetTrigger(FadeIn);
+    }
+
+    public void RetryAskActive(bool active)
+    {
+        retryAsk.SetActive(active);
     }
 }
