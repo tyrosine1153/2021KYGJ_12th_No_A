@@ -4869,7 +4869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5294589199175051675, guid: 128893ab505ea0046a8549e4f627076f, type: 3}
       propertyPath: mapNames.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5294589199175051675, guid: 128893ab505ea0046a8549e4f627076f, type: 3}
       propertyPath: mapNames.Array.data[1]
@@ -4902,6 +4902,10 @@ PrefabInstance:
     - target: {fileID: 5294589199175051675, guid: 128893ab505ea0046a8549e4f627076f, type: 3}
       propertyPath: mapNames.Array.data[8]
       value: "\uD0D1\uC2B9\uC7A5"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294589199175051675, guid: 128893ab505ea0046a8549e4f627076f, type: 3}
+      propertyPath: mapNames.Array.data[9]
+      value: "\uB9C8\uC9C0\uB9C9 \uC5EC\uD589"
       objectReference: {fileID: 0}
     - target: {fileID: 5294589199502262743, guid: 128893ab505ea0046a8549e4f627076f, type: 3}
       propertyPath: m_FontData.m_Font

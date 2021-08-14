@@ -89,7 +89,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void GetItem(Item item)
     {
         curItem[item] = true;
-        InGameUiManager._instance.ItemSlotUpdate();
+        InGameUiManager.Instance.ItemSlotUpdate();
 
         print($"Player Get Item! {item}");
     }
@@ -109,7 +109,15 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void StageClear()
     {
-        StageManager.Instance.Fade(true);
+        if (StageManager.Instance.curStageNum == 8)
+        {
+            StageManager.Instance.LoadStage(9);
+        }
+        else
+        {
+            StageManager.Instance.Fade(true);
+        }
+
     }
 
     [ContextMenu("정보")]
