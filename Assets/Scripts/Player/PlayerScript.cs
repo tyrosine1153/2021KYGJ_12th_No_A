@@ -1,59 +1,97 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerScript : PersistentSingleton<PlayerScript>
 {
-    [Header("Managers")]
-    [SerializeField] GameManager gameManager;
+    private static readonly int Walk = Animator.StringToHash("Walk");
+    private static readonly int IsGround = Animator.StringToHash("IsGround");
+    private static readonly int Wall = Animator.StringToHash("Wall");
+    private static readonly int JumpUp = Animator.StringToHash("JumpUp");
+    private static readonly int Sit = Animator.StringToHash("Sit");
+    private static readonly int Dash1 = Animator.StringToHash("Dash");
+    
+    private Rigidbody2D _rigidbody;
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
 
-    [Header("Inspector")]
-    [SerializeField] Rigidbody2D rigid;
-    [SerializeField] Animator ani;
-    [SerializeField] SpriteRenderer sprite;
-
-    [Header("Time")]
-    [SerializeField] float curDashCool;
-
-    [Header("PlayerState")]
+    [Header("PlayerState")] 
     public bool isGround;
-    [SerializeField] bool isWall;
+    public bool isWall;
     public bool isSit;
     public bool canControl;
-    [SerializeField] float moveSpeed;
-    [SerializeField] float jumpPower;
-    [SerializeField] float maxDashCoolTime;
-    [SerializeField] float dashPower;
-    [SerializeField] float rollPower;
-    [SerializeField] float dashingTime;
-    [SerializeField] float rollingTime;
-
-    [Header("Ground")]
-    [SerializeField] float GroundLength;
-    [SerializeField] GameObject smoke;
-
-    [Header("Wall")]
-    [SerializeField] Vector2 wallJumpForce;
-    [SerializeField] float wallSpeed;
-    [SerializeField] float wallLength;
-
-    [Header("Spring")]
-    [SerializeField] float springPower;
-
-    [Header("RIgid")]
-    [SerializeField] float curVelocityY;
-
-    [Header("Axis")]
-    [SerializeField] float inputX;
-
     [SerializeField] private bool isWalking;
+    
+    [Header("Move")]
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpPower;
+    [SerializeField] private float maxDashCoolTime;
+    [SerializeField] private float curDashCool;
+    [SerializeField] private float dashPower;
+    [SerializeField] private float rollPower;
+    [SerializeField] private float dashingTime;
+    [SerializeField] private float rollingTime;
+
+    [Header("Ground")] 
+    [SerializeField] private float groundLength;
+    [SerializeField] private GameObject smoke;
+
+    [Header("Wall")] 
+    [SerializeField] private Vector2 wallJumpForce;
+    [SerializeField] private float wallSpeed;
+    [SerializeField] private float wallLength;
+
+    [Header("Spring")] 
+    [SerializeField] private float springPower;
+
+    [Header("Rigid")] 
+    [SerializeField] private float curVelocityY;
+
+    [Header("Axis")] 
+    [SerializeField] private float inputX;
+    
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
 
     private void Update()
     {
-        //µ•Ω¨ ƒ≈∏¿” ¿Á±‚
+        //Îç∞Ïâ¨ Ïø®ÌÉÄÏûÑ Ïû¨Í∏∞
         if (curDashCool >= 0) curDashCool -= Time.deltaTime;
 
-        //µ•Ω¨ ƒ≈∏¿”¿Ã µπæ“∞Ì Shift¥©∏£∏È µ•Ω¨
+        if (canControl) Move();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Spring") && _rigidbody.velocity.y < 0)
+        {
+            _rigidbody.velocity = new Vector2(0, 0);
+            _rigidbody.AddForce(new Vector2(0, springPower));
+        }
+    }
+
+    private void Move()
+    {
+        // ÌòÑÏû¨ ÏÉÅÌÉú Ï†ÄÏû•
+        var pos = transform.position;
+        Debug.DrawRay(new Vector3(pos.x - 0.49f, pos.y - 0.6f, 0), transform.right,
+            Color.red);
+        isWall = Physics2D.Raycast(pos, new Vector3(inputX, 0, 0), wallLength,
+            LayerMask.GetMask("Ground"));
+        isGround = Physics2D.Raycast(new Vector3(pos.x - 0.49f, pos.y - 0.6f, 0),
+            new Vector3(1, 0, 0), groundLength, LayerMask.GetMask("Ground"));
+
+        if (isWall) curVelocityY = -wallSpeed;
+        else curVelocityY = _rigidbody.velocity.y;
+
+        // ÏûÖÎ†•
+        inputX = Input.GetAxisRaw("Horizontal");
+
+        //Îç∞Ïâ¨ Ïø®ÌÉÄÏûÑÏù¥ ÎèåÏïòÍ≥† ShiftÎàÑÎ•¥Î©¥ Îç∞Ïâ¨
         if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && !isGround && inputX != 0)
         {
             EffectSoundManager.Instance.PlayEffect(4);
@@ -66,50 +104,46 @@ public class PlayerScript : PersistentSingleton<PlayerScript>
             StartCoroutine(Roll());
         }
 
-        if (canControl) Move();
+        // ÏïâÍ∏∞
+        if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && isGround && inputX == 0)
+        {
+            isSit = true;
+            _rigidbody.velocity = new Vector2(0, 0);
+        }
+        else
+        {
+            isSit = false;
+            _rigidbody.velocity = new Vector2(inputX * moveSpeed, curVelocityY);
+        }
 
-        if (Input.GetKeyDown(KeyCode.Space) && canControl && inputX != 0 && isWall && !isGround)
+        //ÎïÖÏóê ÏûàÍ≥† Ïä§ÌéòÏù¥Ïä§Î∞îÎ•º ÎàÑÎ•¥Î©¥ Ï†êÌîÑ Ïã§Ìñâ
+        if (Input.GetKeyDown(KeyCode.Space) && inputX != 0 && isWall && !isGround)
         {
             StartCoroutine(WallJump());
         }
-
-        //∂•ø° ¿÷∞Ì Ω∫∆‰¿ÃΩ∫πŸ∏¶ ¥©∏£∏È ¡°«¡ Ω««‡
-        else if (Input.GetKeyDown(KeyCode.Space) && canControl && isGround)
+        else if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
             EffectSoundManager.Instance.PlayEffect(5);
             Jump();
         }
 
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+            EditorApplication.isPlaying = false;
 #else
-            Application.Quit(); //æÓ«√∏Æƒ…¿Ãº« ¡æ∑·
+            Application.Quit(); //Ïñ¥ÌîåÎ¶¨ÏºÄÏù¥ÏÖò Ï¢ÖÎ£å
 #endif
         }
-    }
 
-    void Move()
-    {
-        inputX = Input.GetAxisRaw("Horizontal");
-        ani.SetBool("Walk", inputX == 0 ? false : true);
-        ani.SetBool("IsGround", isGround);
-        ani.SetBool("Wall", isWall);
+        // Ïï†ÎãàÎ©îÏù¥ÏÖò
+        _animator.SetBool(Walk, inputX != 0);
+        _animator.SetBool(IsGround, isGround);
+        _animator.SetBool(Wall, isWall);
+        _animator.SetBool(JumpUp, _rigidbody.velocity.y > 0);
+        _animator.SetBool(Sit, isSit);
 
-        Debug.DrawRay(new Vector3(transform.position.x -0.49f, transform.position.y - 0.6f, 0), transform.right, Color.red);
-        isWall = Physics2D.Raycast(transform.position, new Vector3(inputX, 0, 0), wallLength, LayerMask.GetMask("Ground"));
-        isGround = Physics2D.Raycast(new Vector3(transform.position.x - 0.49f, transform.position.y - 0.6f, 0), new Vector3(1, 0, 0), GroundLength, LayerMask.GetMask("Ground"));
-
-        if (isWall) curVelocityY = -wallSpeed;
-        else curVelocityY = rigid.velocity.y;
-
-        if (rigid.velocity.y > 0) ani.SetBool("JumpUp", true);
-        else ani.SetBool("JumpUp", false);
-
-        if (inputX < 0) sprite.flipX = true;
-        else if (inputX > 0) sprite.flipX = false;
-
+        // Ìö®Í≥ºÏùå
         if (inputX != 0)
         {
             if (!isWalking)
@@ -118,75 +152,63 @@ public class PlayerScript : PersistentSingleton<PlayerScript>
                 EffectSoundManager.Instance.FootWalkStart();
             }
 
-            sprite.flipX = inputX < 0;
+            _spriteRenderer.flipX = inputX < 0;
         }
-        else if(isWalking)
+        else if (isWalking)
         {
             isWalking = false;
             EffectSoundManager.Instance.FootWalkStop();
         }
-        
-        if (Input.GetKey(KeyCode.S) && isGround && inputX == 0)
-        {
-            isSit = true;
-            ani.SetBool("Sit", true);
-            rigid.velocity = new Vector2(0, 0);
-        }
-        else
-        {
-            isSit = false;
-            ani.SetBool("Sit", false);
-            rigid.velocity = new Vector2(inputX * moveSpeed, curVelocityY);
-        }
     }
 
-    void Jump()
+    private void Jump()
     {
         if (isWall) return;
         Smoke();
-        rigid.AddForce(new Vector2(0, jumpPower));
+        _rigidbody.AddForce(new Vector2(0, jumpPower));
     }
 
-    IEnumerator Dash()
+    private IEnumerator Dash()
     {
         curDashCool = maxDashCoolTime;
-        ani.SetBool("Dash", true);
+        _animator.SetBool(Dash1, true);
 
         canControl = false;
 
-        rigid.velocity = new Vector2(0, 0);
-        if (inputX > 0) rigid.velocity = new Vector2(dashPower, 0);
-        else rigid.velocity = new Vector2(-dashPower, 0);
+        _rigidbody.velocity = new Vector2(0, 0);
+        if (inputX > 0) _rigidbody.velocity = new Vector2(dashPower, 0);
+        else _rigidbody.velocity = new Vector2(-dashPower, 0);
 
         yield return new WaitForSeconds(dashingTime);
 
-        ani.SetBool("Dash", false);
+        _animator.SetBool(Dash1, false);
         canControl = true;
     }
 
-    IEnumerator Roll()
+    private IEnumerator Roll()
     {
         curDashCool = maxDashCoolTime;
-        ani.SetBool("Dash", true);
+        _animator.SetBool(Dash1, true);
 
         canControl = false;
 
-        rigid.velocity = new Vector2(0, 0);
-        if (inputX > 0) rigid.velocity = new Vector2(rollPower, 0);
-        else rigid.velocity = new Vector2(-rollPower, 0);
+        _rigidbody.velocity = new Vector2(0, 0);
+        if (inputX > 0) _rigidbody.velocity = new Vector2(rollPower, 0);
+        else _rigidbody.velocity = new Vector2(-rollPower, 0);
 
         yield return new WaitForSeconds(rollingTime);
 
-        ani.SetBool("Dash", false);
+        _animator.SetBool(Dash1, false);
         canControl = true;
     }
 
-    IEnumerator WallJump()
+    private IEnumerator WallJump()
     {
         canControl = false;
 
-        if (inputX > 0) rigid.AddForce(new Vector2(-wallJumpForce.x, wallJumpForce.y));
-        else rigid.AddForce(new Vector2(wallJumpForce.x, wallJumpForce.y));
+        _rigidbody.AddForce(inputX > 0
+            ? new Vector2(-wallJumpForce.x, wallJumpForce.y)
+            : new Vector2(wallJumpForce.x, wallJumpForce.y));
 
         yield return new WaitForSeconds(0.1f);
 
@@ -198,21 +220,7 @@ public class PlayerScript : PersistentSingleton<PlayerScript>
         if (inputX > 0)
             Instantiate(smoke, transform.position, Quaternion.identity);
         else
-            Instantiate(smoke, transform.position, Quaternion.identity).transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Spring" && rigid.velocity.y < 0)
-        {
-            rigid.velocity = new Vector2(0, 0);
-            rigid.AddForce(new Vector2(0, springPower));
-        }
-
-
-        if (collision.tag == "Item")
-        {
-            //æ∆¿Ã≈€ ≥÷¥¬ «‘ºˆ
-        }
+            Instantiate(smoke, transform.position, Quaternion.identity).transform.GetChild(0)
+                .GetComponent<SpriteRenderer>().flipX = true;
     }
 }

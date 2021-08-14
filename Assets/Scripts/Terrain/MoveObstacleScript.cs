@@ -1,16 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveObstacleScript : MonoBehaviour
 {
     [SerializeField] private float moveDistance;
     [SerializeField] private float moveSpeed;
+    private int _dest;
 
     private Vector3 _startPosition;
     private Vector3 _turnPosition;
-    private int _dest;
 
     private void Start()
     {
@@ -24,13 +21,8 @@ public class MoveObstacleScript : MonoBehaviour
     private void Update()
     {
         if (transform.position.x < _startPosition.x && _dest == -1)
-        {
             _dest = 1;
-        }
-        else if (_turnPosition.x < transform.position.x && _dest == 1)
-        {
-            _dest = -1;
-        }
+        else if (_turnPosition.x < transform.position.x && _dest == 1) _dest = -1;
 
         transform.Translate(Vector3.right * _dest * moveSpeed * Time.deltaTime);
     }

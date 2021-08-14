@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // 효과
 public class ObstacleScript : MonoBehaviour
 {
     [SerializeField] private int damageRate;
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.tag);

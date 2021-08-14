@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogToTextBox : MonoBehaviour
 {
     [SerializeField] private bool isDialogueEnd;
     [TextArea] public string dialogueText = "";
-    
-    void Start()
+
+    private void Start()
     {
         isDialogueEnd = false;
     }

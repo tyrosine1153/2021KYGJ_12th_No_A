@@ -6,16 +6,16 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public int maxHP = 5;
     public int curHP;
-    
+
     // 피격 후 일정 시간동안 피격 무효
     public float maxDamageTime;
     public float curDamageTime;
     public bool isInSafeZone;
-    
-    public Item[] clearItems;
-    public Dictionary<Item, bool> curItem;
 
-    void Start()
+    public Item[] clearItems;
+    public Dictionary<Item, bool> CurItem;
+
+    private void Start()
     {
         curHP = maxHP;
         curDamageTime = maxDamageTime;
@@ -26,22 +26,16 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void FixedUpdate()
     {
-        if (curDamageTime > 0)
-        {
-            curDamageTime -= Time.deltaTime;
-        }
+        if (curDamageTime > 0) curDamageTime -= Time.deltaTime;
     }
-    
+
     private void InitItem()
     {
-        curItem = new Dictionary<Item, bool>();
-        foreach (var item in clearItems)
-        {
-            curItem[item] = false;
-        }
+        CurItem = new Dictionary<Item, bool>();
+        foreach (var item in clearItems) CurItem[item] = false;
         ViewCurItem();
     }
-    
+
     public void GetDamagedHP(int damagePoint = 1)
     {
         if (curHP > 0)
@@ -49,11 +43,9 @@ public class GameManager : MonoSingleton<GameManager>
             curHP -= damagePoint;
             curDamageTime = maxDamageTime;
         }
+
         InGameUiManager.Instance.PlayerHeartUpdate();
-        if(curHP <= 0)
-        {
-            Die();
-        }
+        if (curHP <= 0) Die();
         print($"Player Get Damaged! HP : {curHP}/{maxHP}");
     }
 
@@ -63,10 +55,6 @@ public class GameManager : MonoSingleton<GameManager>
         {
             curHP += healPoint;
         }
-        else
-        {
-            // 대충 다 찼다는 효과
-        }
 
         print($"Player Get Healed! HP : {curHP}/{maxHP}");
     }
@@ -75,7 +63,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         curHP = 0;
         print($"Player is Dead! HP : {curHP}/{maxHP}");
-        
+
         InGameUiManager.Instance.ShowGameOver();
         PlayerScript.Instance.canControl = false;
         Invoke(nameof(GameOver), 3f);
@@ -86,10 +74,10 @@ public class GameManager : MonoSingleton<GameManager>
         print("Game Over!");
         InGameUiManager.Instance.RetryAskActive(true);
     }
-    
+
     public void GetItem(Item item)
     {
-        curItem[item] = true;
+        CurItem[item] = true;
         InGameUiManager.Instance.ItemSlotUpdate();
 
         print($"Player Get Item! {item}");
@@ -98,12 +86,8 @@ public class GameManager : MonoSingleton<GameManager>
     public bool IsClearableItem()
     {
         foreach (var item in clearItems)
-        {
-            if (!curItem[item])
-            {
-                return false;        
-            }
-        }
+            if (!CurItem[item])
+                return false;
 
         return true;
     }
@@ -111,25 +95,17 @@ public class GameManager : MonoSingleton<GameManager>
     public void StageClear()
     {
         if (StageManager.Instance.curStageNum == 8)
-        {
             StageManager.Instance.LoadStage(9);
-        }
         else
-        {
             StageManager.Instance.Fade(true);
-        }
-
     }
 
     [ContextMenu("정보")]
-    void ViewCurItem()
+    private void ViewCurItem()
     {
-        StringBuilder itemText = new StringBuilder();
+        var itemText = new StringBuilder();
         itemText.Append("현재 아이템 목록\n");
-        foreach (var item in curItem)
-        {
-            itemText.Append($"{item.Key} : {item.Value}\n");
-        }
+        foreach (var item in CurItem) itemText.Append($"{item.Key} : {item.Value}\n");
         print(itemText.ToString());
     }
 }

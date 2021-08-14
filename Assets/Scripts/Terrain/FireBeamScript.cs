@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class FireBeamScript : MonoBehaviour
 {
+    private static readonly int Appear = Animator.StringToHash("Appear");
     [SerializeField] private bool hasGottenDamaged;
     [SerializeField] private int damageRate = 1;
     public GameObject redSprite;
@@ -14,15 +12,13 @@ public class FireBeamScript : MonoBehaviour
     [Range(4.5f, 60f)] public float maxInclusive;
 
     private Animator _animator;
-    
-    private static readonly int Appear = Animator.StringToHash("Appear");
     private Coroutine _coroutine;
-    
+
     private void Start()
     {
         hasGottenDamaged = false;
         redSprite.SetActive(false);
-        
+
         _animator = GetComponent<Animator>();
 
         _coroutine = StartCoroutine(nameof(ShootFireBeamCyclical));
@@ -31,9 +27,9 @@ public class FireBeamScript : MonoBehaviour
     public void ShootFireBeam()
     {
         hasGottenDamaged = false;
-        
+
         _animator.SetTrigger(Appear);
-        
+
         if (!hasGottenDamaged)
         {
             hasGottenDamaged = true;
@@ -48,10 +44,11 @@ public class FireBeamScript : MonoBehaviour
             print("!!!!!!!!!!!!!!!!!!");
             GameManager.Instance.GetDamagedHP(damageRate);
         }
+
         EffectSoundManager.Instance.PlayEffect(7);
     }
 
-    IEnumerator ShootFireBeamCyclical()
+    private IEnumerator ShootFireBeamCyclical()
     {
         while (true)
         {
@@ -59,7 +56,7 @@ public class FireBeamScript : MonoBehaviour
             print($"FireBeam time : {time}");
             InGameUiManager.Instance.BeamTimer(time);
             yield return new WaitForSeconds(time);
-            
+
             ShootFireBeam();
             yield return new WaitForSeconds(4.5f);
         }

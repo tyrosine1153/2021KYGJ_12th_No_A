@@ -1,17 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+
 public class MoveBack : MonoBehaviour
 {
-
-    public float ScrollSpeed = 0.5f;
-    float Offset;
+    public float scrollSpeed = 0.5f;
     public Image target;
+    private float _offset;
 
-    void Update()
+    private void Update()
     {
-        Offset += Time.deltaTime * ScrollSpeed;
-        target.material.mainTextureOffset = new Vector2(Offset, 0);
+        _offset += Time.deltaTime * scrollSpeed;
+        target.material.mainTextureOffset = new Vector2(_offset, 0);
     }
 }
-

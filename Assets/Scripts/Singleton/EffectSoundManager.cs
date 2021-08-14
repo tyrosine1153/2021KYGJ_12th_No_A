@@ -1,21 +1,18 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class EffectSoundManager : PersistentSingleton<EffectSoundManager>
 {
     [SerializeField] private AudioClip[] effectAudioClips;
-    [SerializeField] private AudioSource _walkAudioSource;
-    [SerializeField] private AudioSource _effectAudioSource;
+    [SerializeField] private AudioSource walkAudioSource;
+    [SerializeField] private AudioSource effectAudioSource;
     private Coroutine _coroutine;
 
     public void PlayEffect(int clipNum, bool isLoop = false)
     {
-        _effectAudioSource.loop = isLoop;
-        _effectAudioSource.clip = effectAudioClips[clipNum];
-        _effectAudioSource.Play();
+        effectAudioSource.loop = isLoop;
+        effectAudioSource.clip = effectAudioClips[clipNum];
+        effectAudioSource.Play();
     }
 
     public void FootWalkStart()
@@ -27,18 +24,15 @@ public class EffectSoundManager : PersistentSingleton<EffectSoundManager>
     {
         while (true)
         {
-            _walkAudioSource.clip = effectAudioClips[Random.Range(0, 4)];
-            _walkAudioSource.Play();
-            
+            walkAudioSource.clip = effectAudioClips[Random.Range(0, 4)];
+            walkAudioSource.Play();
+
             yield return new WaitForSeconds(0.5f);
         }
     }
 
     public void FootWalkStop()
     {
-        if (_coroutine != null)
-        {
-            StopCoroutine(_coroutine);
-        }
+        if (_coroutine != null) StopCoroutine(_coroutine);
     }
 }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ClearPointScript : MonoBehaviour
@@ -14,10 +11,7 @@ public class ClearPointScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Player"))
-        {
-            TryStageClear();
-        }
+        if (collision.transform.CompareTag("Player")) TryStageClear();
     }
 
     private void TryStageClear()

@@ -1,31 +1,29 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TextBoxScript : MonoSingleton<TextBoxScript>
 {
-    const float TypingTime = 0.1f;
-    
-    private Image _imageUI;
-    private Text _textUI;
-
-    private Color _imageColor;
-    private Color _textColor;
-    private Color _emptyColor;
-    
-    private Coroutine _coTypeText;
-    private bool _isTyping;
-    private bool _isFliped;
+    private const float TypingTime = 0.1f;
 
     [SerializeField] private Transform playerTransform;
-    
-    void Start()
+
+    private Coroutine _coTypeText;
+    private Color _emptyColor;
+
+    private Color _imageColor;
+
+    private Image _imageUI;
+    private bool _isFliped;
+    private bool _isTyping;
+    private Color _textColor;
+    private Text _textUI;
+
+    private void Start()
     {
         _imageUI = GetComponent<Image>();
         _textUI = GetComponentInChildren<Text>();
-        
+
         _imageColor = _imageUI.color;
         _textColor = _textUI.color;
         _emptyColor = new Color(0, 0, 0, 0);
@@ -76,34 +74,30 @@ public class TextBoxScript : MonoSingleton<TextBoxScript>
     public void TypeText(string text)
     {
         if (_isTyping)
-        {
             StopCoroutine(_coTypeText);
-        }
         else
-        {
             SetTransparent(true);
-        }
         _coTypeText = StartCoroutine(CoTypeText(text));
     }
-    
-    IEnumerator CoTypeText(string text)
+
+    private IEnumerator CoTypeText(string text)
     {
         _isTyping = true;
         _isFliped = false;
 
         _textUI.text = "";
-        
+
         yield return new WaitForSeconds(0.5f);
-        
+
         foreach (var t in text)
         {
-            if(_isFliped) break;
-            
+            if (_isFliped) break;
+
             _textUI.text += t;
-            
+
             yield return new WaitForSeconds(TypingTime);
         }
-        
+
         _textUI.text = text;
         _isFliped = true;
         yield return new WaitForSeconds(3f);
@@ -112,7 +106,7 @@ public class TextBoxScript : MonoSingleton<TextBoxScript>
         SetTransparent(false);
     }
 
-    
+
     // 나타나기
     // 타이핑 중에는 따라다니기
     // 타이핑 중에 새로운 타이핑이 생기면 원래 코루틴을 중단하고 새로 시작하기

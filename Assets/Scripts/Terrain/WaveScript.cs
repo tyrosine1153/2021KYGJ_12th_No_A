@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveScript : MonoBehaviour
@@ -35,7 +32,7 @@ public class WaveScript : MonoBehaviour
 
         if (other.collider.CompareTag("Item"))
         {
-            TextBoxScript.Instance.TypeText($"대충 파도가 {other.collider.name}을 먹었다는 스크립트!");
+            TextBoxScript.Instance.TypeText($"파도가 {other.collider.name}을 먹었어!");
             Destroy(other.gameObject);
         }
     }

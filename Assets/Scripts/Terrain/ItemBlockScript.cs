@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // 아이템 이동 (명세에 없음), 효과, 생성 조건
@@ -11,15 +8,12 @@ public class ItemBlockScript : MonoBehaviour
     [SerializeField] private bool hasItem;
 
 
-    void Start()
+    private void Start()
     {
         if (ItemPrefabs == null)
         {
             ItemPrefabs = new GameObject[5];
-            for (int i = 0; i < ItemPrefabs.Length; i++)
-            {
-                ItemPrefabs[i] = Resources.Load<GameObject>($"{(Item)i}Item");
-            }
+            for (var i = 0; i < ItemPrefabs.Length; i++) ItemPrefabs[i] = Resources.Load<GameObject>($"{(Item) i}Item");
         }
 
         hasItem = true;
@@ -32,7 +26,7 @@ public class ItemBlockScript : MonoBehaviour
         {
             Vector3 pointOfImpact = contact.point;
             print(pointOfImpact);
-            if ( collision.transform.CompareTag("Player") && (transform.position - pointOfImpact).y >= 0.4 && hasItem)
+            if (collision.transform.CompareTag("Player") && (transform.position - pointOfImpact).y >= 0.4 && hasItem)
             {
                 CreateItemObj();
                 hasItem = false;
@@ -43,7 +37,7 @@ public class ItemBlockScript : MonoBehaviour
     private void CreateItemObj()
     {
         // 아이탬 생성 방식따라 수정해야 함
-        var item = Instantiate(ItemPrefabs[(int)itemInfo], transform);
+        var item = Instantiate(ItemPrefabs[(int) itemInfo], transform);
         var itemScript = item.GetComponent<ItemScript>();
 
         itemScript.ItemInfo = itemInfo;

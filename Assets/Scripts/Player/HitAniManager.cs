@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HitAniManager : MonoBehaviour
 {
-    [Header("Animation")]
-    [SerializeField] SpriteRenderer sprite;
-    [SerializeField] float alphaNum;
+    [Header("Animation")] [SerializeField] private SpriteRenderer sprite;
 
-    void Update()
+    [SerializeField] private float alphaNum;
+
+    private void Update()
     {
         if (GameManager.Instance.curDamageTime > 0)
             sprite.color = new Color(1, 1, 1, alphaNum);

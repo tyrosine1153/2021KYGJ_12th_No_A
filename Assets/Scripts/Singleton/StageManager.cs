@@ -1,40 +1,38 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StageManager : PersistentSingleton<StageManager>
 {
     public int curStageNum;
-    [SerializeField] Text curStageText;
+    [SerializeField] private Text curStageText;
 
-    [SerializeField] string[] mapNames;
+    [SerializeField] private string[] mapNames;
 
-    [SerializeField] Animator ani;
+    [SerializeField] private Animator ani;
 
-    public int StageData;
+    public int stageData;
+    private static readonly int Start1 = Animator.StringToHash("Start");
 
     private void Start()
     {
-        StageData = PlayerPrefs.GetInt("StageData", 0);
-        print($"Success to Load StageData! stageData : {StageData}");
+        stageData = PlayerPrefs.GetInt("StageData", 0);
+        print($"Success to Load StageData! stageData : {stageData}");
     }
 
     public void Fade(bool isNextLv)
     {
-        if (curStageNum <= 0) curStageNum = StageData; 
+        if (curStageNum <= 0) curStageNum = stageData;
         if (isNextLv)
         {
             curStageNum++;
-            
-            StageData = curStageNum;
-            PlayerPrefs.SetInt("StageData", StageData);
-            print($"Success to Save StageData! stageData : {StageData}");
+
+            stageData = curStageNum;
+            PlayerPrefs.SetInt("StageData", stageData);
+            print($"Success to Save StageData! stageData : {stageData}");
         }
 
-        ani.SetTrigger("Start");
+        ani.SetTrigger(Start1);
 
         curStageText.text = mapNames[curStageNum];
     }
@@ -53,22 +51,22 @@ public class StageManager : PersistentSingleton<StageManager>
     // 처음부터
     public void StartNewGame()
     {
-        StageData = 0;
-        curStageNum = StageData;
-        PlayerPrefs.SetInt("StageData", StageData);
+        stageData = 0;
+        curStageNum = stageData;
+        PlayerPrefs.SetInt("StageData", stageData);
     }
 
     // 이어하기
     public void Continue()
     {
-        if (StageData > 0)
+        if (stageData > 0)
         {
-            curStageNum = StageData;
-            SceneManager.LoadScene(StageData);
+            curStageNum = stageData;
+            SceneManager.LoadScene(stageData);
         }
         else
         {
-            print($"StageData is wrong! StageData : {StageData}");
+            print($"StageData is wrong! StageData : {stageData}");
         }
     }
 
@@ -76,16 +74,16 @@ public class StageManager : PersistentSingleton<StageManager>
     {
         SceneManager.LoadScene(0);
     }
-    
+
     public void LoadStage(int stageNum)
     {
         curStageNum = stageNum;
         // SceneManager.LoadScene($"Stage_{curStageNum}(min)");
 
-        StageData = curStageNum;
-        PlayerPrefs.SetInt("StageData", StageData);
-        print($"Success to Save StageData! stageData : {StageData}");
-        
+        stageData = curStageNum;
+        PlayerPrefs.SetInt("StageData", stageData);
+        print($"Success to Save StageData! stageData : {stageData}");
+
         Fade(false);
     }
 }

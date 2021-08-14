@@ -1,31 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PrologueManager : MonoBehaviour
 {
-    [SerializeField] bool isViewwAll;
-    [SerializeField] StageManager stageManager;
+    [SerializeField] private bool isViewAll;
+    [SerializeField] private StageManager stageManager;
 
-    [SerializeField] Sprite[] cuts;
-    [SerializeField] string[] texts;
-    [SerializeField] int cutNum;
+    [SerializeField] private Sprite[] cuts;
+    [SerializeField] private string[] texts;
+    [SerializeField] private int cutNum;
 
-    [SerializeField] Image contents;
-    [SerializeField] Text text;
-    [SerializeField] GameObject touchScreentoStart;
-    [SerializeField] GameObject nextBtn;
-    [SerializeField] GameObject backBtn;
+    [SerializeField] private Image contents;
+    [SerializeField] private Text text;
+    [SerializeField] private GameObject touchScreentoStart;
+    [SerializeField] private GameObject nextBtn;
+    [SerializeField] private GameObject backBtn;
+
     private void Start()
     {
-        isViewwAll = false;
+        isViewAll = false;
     }
 
     public void Next()
     {
-        isViewwAll = false;
+        isViewAll = false;
         touchScreentoStart.SetActive(false);
         cutNum++;
         nextBtn.SetActive(true);
@@ -33,26 +31,25 @@ public class PrologueManager : MonoBehaviour
         if (cutNum == 6)
         {
             nextBtn.SetActive(false);
-            isViewwAll = true;
+            isViewAll = true;
             touchScreentoStart.SetActive(true);
         }
 
         PrologSet();
     }
+
     public void Back()
     {
-        isViewwAll = false;
+        isViewAll = false;
         touchScreentoStart.SetActive(false);
         cutNum--;
         nextBtn.SetActive(true);
         backBtn.SetActive(true);
-        if (cutNum == 0)
-        {
-            backBtn.SetActive(false);
-        }
+        if (cutNum == 0) backBtn.SetActive(false);
 
         PrologSet();
     }
+
     public void PrologReset()
     {
         backBtn.SetActive(false);
@@ -62,7 +59,7 @@ public class PrologueManager : MonoBehaviour
         text.text = texts[cutNum];
     }
 
-    void PrologSet()
+    private void PrologSet()
     {
         contents.sprite = cuts[cutNum];
         text.text = texts[cutNum];
@@ -70,20 +67,20 @@ public class PrologueManager : MonoBehaviour
 
     public void Skip()
     {
-        stageManager.Fade(true); //¥Ÿ¿Ω∏ ¿∏∑Œ
+        stageManager.Fade(true); //Îã§ÏùåÎßµÏúºÎ°ú
     }
 
     public void ViewAll()
     {
-        isViewwAll = true;
+        isViewAll = true;
     }
 
     public void ClickScreen()
     {
-        if (isViewwAll)
+        if (isViewAll)
         {
-            stageManager.Fade(true); //¥Ÿ¿Ω∏ ¿∏∑Œ
-            isViewwAll = false;
+            stageManager.Fade(true); //Îã§ÏùåÎßµÏúºÎ°ú
+            isViewAll = false;
         }
     }
 }
