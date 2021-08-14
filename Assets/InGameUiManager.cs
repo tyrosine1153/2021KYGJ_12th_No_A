@@ -25,7 +25,7 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
     {
         curStageNum = StageManager.Instance.curStageNum;
 
-        if (curStageNum == 2) wave = GameObject.Find("Wave_group");
+        if (curStageNum >= 6) wave = GameObject.Find("Wave_group");
         
         Invoke(nameof(ItemSlotUpdate), 0.2f);
 
@@ -58,24 +58,23 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
 
     private void Update()
     {
-        switch (curStageNum)
+        if (curStageNum < 6)
         {
-            case 1:
-                if(beamCoolTime >= 0)
-                {
-                    beamCoolTime -= Time.deltaTime;
-                    warningText.text = $"태양열까지 남은시간:{Mathf.Floor(beamCoolTime)}초";
-                    if(beamCoolTime < 0)
-                        warningText.text = $"0초";
-                }
-                break;
-            case 2:
-                if (beamCoolTime >= 0)
-                {
-                    float distance = Mathf.Floor(transform.position.x - wave.transform.position.x) / 2;
-                    warningText.text = $"파도와의 거리:{distance}M";
-                }
-                break;
+            if(beamCoolTime >= 0)
+            {
+                beamCoolTime -= Time.deltaTime;
+                warningText.text = $"태양열까지 남은시간:{Mathf.Floor(beamCoolTime)}초";
+                if(beamCoolTime < 0)
+                    warningText.text = $"0초";
+            }
+        }
+        else
+        {
+            if (beamCoolTime >= 0)
+            {
+                float distance = Mathf.Floor(transform.position.x - wave.transform.position.x) / 2;
+                warningText.text = $"파도와의 거리:{distance}M";
+            }
         }
     }
 

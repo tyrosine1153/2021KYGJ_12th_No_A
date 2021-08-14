@@ -55,13 +55,23 @@ public class PlayerScript : PersistentSingleton<PlayerScript>
 
         //데쉬 쿨타임이 돌았고 Shift누르면 데쉬
         if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && !isGround && inputX != 0) StartCoroutine(Dash());
-        if(curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && isGround && inputX != 0) StartCoroutine(Roll());
+        if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && isGround && inputX != 0) StartCoroutine(Roll());
 
         if (canControl) Move();
 
-        if (Input.GetKeyDown(KeyCode.Space) && canControl && inputX != 0 && isWall && !isGround) StartCoroutine(WallJump());
+        if (Input.GetKeyDown(KeyCode.Space) && canControl && inputX != 0 && isWall && !isGround)
+            StartCoroutine(WallJump());
         //땅에 있고 스페이스바를 누르면 점프 실행
         else if (Input.GetKeyDown(KeyCode.Space) && canControl && isGround) Jump();
+
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit(); //어플리케이션 종료
+#endif
+        }
     }
 
     void Move()
