@@ -8,18 +8,30 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: bc27160f2555ec343ad6bc6770424274
+  - enabled: 1
+    path: Assets/Scenes/Stage_1-1(min) 1.unity
+    guid: 2ed5c61ea83e993498cd28575b1bd0b5
   - enabled: 0
-    path: Assets/Scenes/1Stage.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/MinScene.unity
-    guid: c2aaa6b5abaed974a92e41ab940c8d8c
-  - enabled: 0
-    path: Assets/Scenes/MinScene2.unity
-    guid: 7fcc257c69763c143bf2f3e7520dafbf
+    path: Assets/Scenes/Stage_1-2(min) 3.unity
+    guid: 748c0390910e09447a9204379c789f78
+  - enabled: 1
+    path: Assets/Scenes/Stage_1-2(min).unity
+    guid: 0525a71c2215db34a875f0d11ab094df
+  - enabled: 1
+    path: Assets/Scenes/Stage_1-3(min).unity
+    guid: e98451e9fd453124689617d9cd3bdeb0
+  - enabled: 1
+    path: Assets/Scenes/Stage_1-4(min).unity
+    guid: 58e269f81082fa44cb7f87fc3e9e30b2
   - enabled: 1
     path: Assets/Scenes/Stage_1-5(min).unity
     guid: be26dbd1cf27b2d4293f7a5542b8082a
+  - enabled: 1
+    path: Assets/Scenes/Stage_2-1(min).unity
+    guid: 15bb10d6a75299d4cb0a38377b54e959
+  - enabled: 1
+    path: Assets/Scenes/Stage_2-2(min).unity
+    guid: f4d728150ae540d41a9cca2e640f2370
   - enabled: 1
     path: Assets/Scenes/Stage_2-3(min).unity
     guid: dfe64d56ff9d3c545b58e739bafa9d27
