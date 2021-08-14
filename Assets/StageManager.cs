@@ -41,7 +41,7 @@ public class StageManager : PersistentSingleton<StageManager>
 
     public void GoToNextMap()
     {
-        SceneManager.LoadScene($"Stage_{curStageNum}(min)");
+        SceneManager.LoadScene(curStageNum);
     }
 
     // 씬 다시 시작
@@ -61,7 +61,7 @@ public class StageManager : PersistentSingleton<StageManager>
     {
         if (StageData > 0)
         {
-            SceneManager.LoadScene($"Stage_{StageData}(min)");
+            SceneManager.LoadScene(StageData);
         }
         else
         {
