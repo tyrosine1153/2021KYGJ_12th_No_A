@@ -77,6 +77,7 @@ public class GameManager : MonoSingleton<GameManager>
         print($"Player is Dead! HP : {curHP}/{maxHP}");
         
         InGameUiManager.Instance.ShowGameOver();
+        PlayerScript.Instance.canControl = false;
         Invoke(nameof(GameOver), 3f);
     }
 
