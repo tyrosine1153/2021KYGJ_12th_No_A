@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MinScene2.unity
     guid: 7fcc257c69763c143bf2f3e7520dafbf
   - enabled: 1
-    path: Assets/Scenes/Stage_1(min).unity
+    path: Assets/Scenes/Stage_1-5(min).unity
     guid: be26dbd1cf27b2d4293f7a5542b8082a
   - enabled: 1
     path: Assets/Scenes/Stage_2(min).unity
