@@ -46,7 +46,7 @@ public class PlayerScript : PersistentSingleton<PlayerScript>
     [Header("Axis")]
     [SerializeField] float inputX;
 
-
+    [SerializeField] private bool isWalking;
 
     private void Update()
     {
@@ -54,13 +54,22 @@ public class PlayerScript : PersistentSingleton<PlayerScript>
         if (curDashCool >= 0) curDashCool -= Time.deltaTime;
 
         //데쉬 쿨타임이 돌았고 Shift누르면 데쉬
-        if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && !isGround && inputX != 0) StartCoroutine(Dash());
+        if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && !isGround && inputX != 0)
+        {
+            AudioManager.Instance.PlayEffect(4);
+            StartCoroutine(Dash());
+        }
+
         if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && isGround && inputX != 0) StartCoroutine(Roll());
 
         if (canControl) Move();
 
         if (Input.GetKeyDown(KeyCode.Space) && canControl && inputX != 0 && isWall && !isGround)
+        {
+            AudioManager.Instance.PlayEffect(5);
             StartCoroutine(WallJump());
+        }
+
         //땅에 있고 스페이스바를 누르면 점프 실행
         else if (Input.GetKeyDown(KeyCode.Space) && canControl && isGround) Jump();
 
@@ -94,6 +103,22 @@ public class PlayerScript : PersistentSingleton<PlayerScript>
         if (inputX < 0) sprite.flipX = true;
         else if (inputX > 0) sprite.flipX = false;
 
+        if (inputX != 0)
+        {
+            if (!isWalking)
+            {
+                isWalking = true;
+                AudioManager.Instance.FootWalkStart();
+            }
+
+            sprite.flipX = inputX < 0;
+        }
+        else if(isWalking)
+        {
+            isWalking = false;
+            AudioManager.Instance.FootWalkStop();
+        }
+        
         if (Input.GetKey(KeyCode.S) && isGround && inputX == 0)
         {
             isSit = true;

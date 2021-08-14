@@ -46,7 +46,7 @@ public class FireBeamScript : MonoBehaviour
         if (!GameManager.Instance.isInSafeZone)
         {
             GameManager.Instance.GetDamagedHP(damageRate);
-            // 대충 animation
+            AudioManager.Instance.PlayEffect(7);
         }
     }
 

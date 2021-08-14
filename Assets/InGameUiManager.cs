@@ -74,6 +74,10 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
             {
                 float distance = Mathf.Floor(transform.position.x - wave.transform.position.x) / 2;
                 warningText.text = $"파도와의 거리:{distance}M";
+                if (distance <= 5)
+                {
+                    AudioManager.Instance.PlayEffect(8);
+                }
             }
         }
     }

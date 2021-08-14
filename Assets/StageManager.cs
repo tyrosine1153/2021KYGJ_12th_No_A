@@ -20,7 +20,6 @@ public class StageManager : PersistentSingleton<StageManager>
     {
         StageData = PlayerPrefs.GetInt("StageData", 0);
         print($"Success to Load StageData! stageData : {StageData}");
-
     }
 
     public void Fade(bool isNextLv)
@@ -54,7 +53,9 @@ public class StageManager : PersistentSingleton<StageManager>
     // 처음부터
     public void StartNewGame()
     {
-        PlayerPrefs.SetInt("StageData", 1);
+        StageData = 0;
+        curStageNum = StageData;
+        PlayerPrefs.SetInt("StageData", StageData);
     }
 
     // 이어하기

@@ -15,6 +15,7 @@ public class ObstacleScript : MonoBehaviour
         if (other.transform.CompareTag("Player") && GameManager.Instance.curDamageTime <= 0)
         {
             GetDamagedHP();
+            AudioManager.Instance.PlayEffect(6);
         }
     }
 
