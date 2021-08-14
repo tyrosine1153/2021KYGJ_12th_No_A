@@ -30,7 +30,7 @@ public class WaveScript : MonoBehaviour
         {
             print("Player touched at Wave!");
 
-            GameManager.Instance.Die();
+            GameManager.Instance.GetDamagedHP(3);
         }
 
         if (other.collider.CompareTag("Item"))
