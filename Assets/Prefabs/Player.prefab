@@ -322,7 +322,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2358988528715701943}
   - component: {fileID: 5432618313219639195}
-  - component: {fileID: 588068251864103723}
   m_Layer: 5
   m_Name: ItemList
   m_TagString: Untagged
@@ -380,24 +379,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &588068251864103723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196261700716063768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c810002996b6694459789879b4f80ef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemImages:
-  - {fileID: 472146975858161882}
-  - {fileID: 3642332526544187447}
-  - {fileID: 9057839224556531663}
-  - {fileID: 176980895876765270}
-  - {fileID: 625422645404749408}
 --- !u!1 &942236188956423998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1101,12 @@ MonoBehaviour:
   wave: {fileID: 0}
   beamCoolTime: 0
   curStageNum: 0
+  itemImages:
+  - {fileID: 472146975858161882}
+  - {fileID: 3642332526544187447}
+  - {fileID: 9057839224556531663}
+  - {fileID: 176980895876765270}
+  - {fileID: 625422645404749408}
 --- !u!1 &3624293570540765687
 GameObject:
   m_ObjectHideFlags: 0

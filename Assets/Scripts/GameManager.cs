@@ -21,7 +21,7 @@ public class GameManager : MonoSingleton<GameManager>
         curDamageTime = maxDamageTime;
         isInSafeZone = false;
 
-        Invoke(nameof(InitItem), 0.5f);
+        Invoke(nameof(InitItem), 0.1f);
     }
 
     private void FixedUpdate()
@@ -88,7 +88,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void GetItem(Item item)
     {
         curItem[item] = true;
-        // 대충 효과
+        InGameUiManager._instance.ItemSlotUpdate();
 
         print($"Player Get Item! {item}");
     }

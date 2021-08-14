@@ -13,11 +13,28 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
     [SerializeField] float beamCoolTime;
     [SerializeField] int curStageNum;
 
+    [SerializeField] Image[] itemImages;
+    private readonly Color existColor = new Color(1, 1, 1, 1);
+    private readonly Color notExistColor = new Color(1, 1, 1, 0.5f);
+
+    
     private void Start()
     {
         curStageNum = StageManager.Instance.curStageNum;
 
         if (curStageNum == 2) wave = GameObject.Find("Wave_group");
+        
+        Invoke(nameof(ItemSlotUpdate), 0.2f);
+    }
+    
+
+    public void ItemSlotUpdate()
+    {
+        var curItem = GameManager.Instance.curItem;
+        foreach (var item in curItem)
+        {
+            itemImages[(int) item.Key].color = item.Value ? existColor : notExistColor;
+        }
     }
 
     public void PlayerHeartUpdate()
