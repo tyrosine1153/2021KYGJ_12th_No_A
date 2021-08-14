@@ -408,5 +408,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 91d828e93e72c5048bb1b7cd6a2bbb09, type: 3}
   - {fileID: 8300000, guid: 3f3d6eabcd3525f47b4f8daf5b38b60d, type: 3}
   - {fileID: 8300000, guid: 428712a13c331b74b9034626472d4fa6, type: 3}
-  _walkAudioSource: {fileID: 2206770394813102027}
-  _effectAudioSource: {fileID: 2621511775074859586}
+  walkAudioSource: {fileID: 2206770394813102027}
+  effectAudioSource: {fileID: 2621511775074859586}

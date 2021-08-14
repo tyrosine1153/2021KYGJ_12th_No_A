@@ -2360,7 +2360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344c8bcb836dee14391513d6cb0f6844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrollSpeed: 0.1
+  scrollSpeed: 0.5
   target: {fileID: 964191364}
 --- !u!114 &964191364
 MonoBehaviour:
@@ -2710,7 +2710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344c8bcb836dee14391513d6cb0f6844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrollSpeed: 0.2
+  scrollSpeed: 0.5
   target: {fileID: 1307838448}
 --- !u!114 &1307838448
 MonoBehaviour:
@@ -2826,7 +2826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e6a7f077a4a414aac06667e6611648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isViewwAll: 0
+  isViewAll: 0
   stageManager: {fileID: 1022991673}
   cuts:
   - {fileID: 21300000, guid: b14af94cf62b18b4eb355c967a03664d, type: 3}
@@ -3230,7 +3230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344c8bcb836dee14391513d6cb0f6844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrollSpeed: 0.4
+  scrollSpeed: 0.5
   target: {fileID: 1415610483}
 --- !u!114 &1415610483
 MonoBehaviour:
@@ -3433,7 +3433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344c8bcb836dee14391513d6cb0f6844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrollSpeed: 0.5
+  scrollSpeed: 0.5
   target: {fileID: 1561976221}
 --- !u!1 &1567351491
 GameObject:
@@ -4729,7 +4729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344c8bcb836dee14391513d6cb0f6844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrollSpeed: 0.3
+  scrollSpeed: 0.5
   target: {fileID: 2140661591}
 --- !u!114 &2140661591
 MonoBehaviour:

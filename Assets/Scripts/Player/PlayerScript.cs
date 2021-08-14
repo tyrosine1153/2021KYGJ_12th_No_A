@@ -62,6 +62,19 @@ public class PlayerScript : PersistentSingleton<PlayerScript>
         //데쉬 쿨타임 재기
         if (curDashCool >= 0) curDashCool -= Time.deltaTime;
 
+        //데쉬 쿨타임이 돌았고 Shift누르면 데쉬
+        if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && !isGround && inputX != 0)
+        {
+            EffectSoundManager.Instance.PlayEffect(4);
+            StartCoroutine(Dash());
+        }
+
+        if (curDashCool < 0 && Input.GetKeyDown(KeyCode.LeftShift) && isGround && inputX != 0)
+        {
+            EffectSoundManager.Instance.PlayEffect(4);
+            StartCoroutine(Roll());
+        }
+        
         if (canControl) Move();
     }
 
