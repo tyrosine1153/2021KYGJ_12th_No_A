@@ -11,8 +11,9 @@ public class EffectSoundManager : PersistentSingleton<EffectSoundManager>
     [SerializeField] private AudioSource _effectAudioSource;
     private Coroutine _coroutine;
 
-    public void PlayEffect(int clipNum)
+    public void PlayEffect(int clipNum, bool isLoop = false)
     {
+        _effectAudioSource.loop = isLoop;
         _effectAudioSource.clip = effectAudioClips[clipNum];
         _effectAudioSource.Play();
     }

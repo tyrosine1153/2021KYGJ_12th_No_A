@@ -9,6 +9,7 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
     [SerializeField] Text warningText;
 
     [SerializeField] GameObject wave;
+    [SerializeField] private bool _isNear;
 
     [SerializeField] float beamCoolTime;
     [SerializeField] int curStageNum;
@@ -75,11 +76,19 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
         {
             if (beamCoolTime >= 0)
             {
-                float distance = Mathf.Floor( playeTransform.position.x - wave.transform.position.x) / 2;
+                float distance = Mathf.Floor(playeTransform.position.x - wave.transform.position.x) + 7;
                 warningText.text = $"파도와의 거리:{distance}M";
                 if (distance <= 5)
                 {
-                    EffectSoundManager.Instance.PlayEffect(8);
+                    if (!_isNear)
+                    {
+                        EffectSoundManager.Instance.PlayEffect(8, true);
+                        _isNear = true;
+                    }
+                }
+                else if(_isNear)
+                {
+                    _isNear = false;
                 }
             }
         }
