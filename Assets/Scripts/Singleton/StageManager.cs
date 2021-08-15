@@ -10,26 +10,29 @@ public class StageManager : PersistentSingleton<StageManager>
     [SerializeField] private string[] mapNames;
 
     [SerializeField] private Animator ani;
-
-    public int stageData;
     private static readonly int Start1 = Animator.StringToHash("Start");
 
+    public int stageNumData;
+    public StageLevel stageLevelData;  // 난이도
+    
     private void Start()
     {
-        stageData = PlayerPrefs.GetInt("StageData", 0);
-        print($"Success to Load StageData! stageData : {stageData}");
+        stageNumData = PlayerPrefs.GetInt("StageNumData", 0);
+        print($"Success to Load StageNumData! StageNumData : {stageNumData}");
+        stageLevelData = (StageLevel)PlayerPrefs.GetInt("StageLevelData", 3);
+        print($"Success to Load StageLevelData! StageLevelData : {stageLevelData}");
     }
 
     public void Fade(bool isNextLv)
     {
-        if (curStageNum <= 0) curStageNum = stageData;
+        if (curStageNum <= 0) curStageNum = stageNumData;
         if (isNextLv)
         {
             curStageNum++;
 
-            stageData = curStageNum;
-            PlayerPrefs.SetInt("StageData", stageData);
-            print($"Success to Save StageData! stageData : {stageData}");
+            stageNumData = curStageNum;
+            PlayerPrefs.SetInt("StageNumData", stageNumData);
+            print($"Success to Save StageNumData! stageNumData : {stageNumData}");
         }
 
         ani.SetTrigger(Start1);
@@ -37,53 +40,65 @@ public class StageManager : PersistentSingleton<StageManager>
         curStageText.text = mapNames[curStageNum];
     }
 
-    public void GoToNextMap()
+    public void SetStageLevel(int stageLevel)
     {
-        SceneManager.LoadScene(curStageNum);
+        stageLevelData = (StageLevel)stageLevel;
+        PlayerPrefs.SetInt("StageLevelData", (int)stageLevelData);
+        print($"Success to Save StageLevelData! StageLevelData : {stageLevelData}");
     }
-
-    // 씬 다시 시작
-    public void LoadCurrentScene()
-    {
-        LoadStage(curStageNum);
-    }
-
+    
+    #region GameStart
     // 처음부터
     public void StartNewGame()
     {
-        stageData = 0;
-        curStageNum = stageData;
-        PlayerPrefs.SetInt("StageData", stageData);
+        stageNumData = 0;
+        curStageNum = stageNumData;
+        PlayerPrefs.SetInt("StageNumData", stageNumData);
     }
 
     // 이어하기
     public void Continue()
     {
-        if (stageData > 0)
+        if (stageNumData > 0)
         {
-            curStageNum = stageData;
-            SceneManager.LoadScene(stageData);
+            curStageNum = stageNumData;
+            Fade(false);
         }
         else
         {
-            print($"StageData is wrong! StageData : {stageData}");
+            print($"StageNumData is wrong! StageNumData : {stageNumData}");
         }
     }
+    #endregion
 
-    public void LoadMainMenuScene()
+    public void GoToNextMap()
+    {
+        SceneManager.LoadScene(curStageNum);
+    }
+    
+    #region LoadScene
+    // 매인 메뉴
+    public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
     }
-
+    
+    // 다시 시작
+    public void LoadCurrentScene()
+    {
+        LoadStage(curStageNum);
+    }
+    
     public void LoadStage(int stageNum)
     {
         curStageNum = stageNum;
         // SceneManager.LoadScene($"Stage_{curStageNum}(min)");
 
-        stageData = curStageNum;
-        PlayerPrefs.SetInt("StageData", stageData);
-        print($"Success to Save StageData! stageData : {stageData}");
+        stageNumData = curStageNum;
+        PlayerPrefs.SetInt("StageNumData", stageNumData);
+        print($"Success to Save StageNumData! StageNumData : {stageNumData}");
 
         Fade(false);
     }
+    #endregion
 }

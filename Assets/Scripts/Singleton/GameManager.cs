@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public int maxHP = 5;
+    public int maxHP = 3;
     public int curHP;
 
     // 피격 후 일정 시간동안 피격 무효
@@ -17,6 +17,14 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Start()
     {
+        if (StageManager.Instance != null)
+        {
+            maxHP = (int) StageManager.Instance.stageLevelData;
+        }
+        else
+        {
+            maxHP = 3;
+        }
         curHP = maxHP;
         curDamageTime = maxDamageTime;
         isInSafeZone = false;
