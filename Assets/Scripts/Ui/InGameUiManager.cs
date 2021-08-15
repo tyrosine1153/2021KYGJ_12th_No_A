@@ -115,7 +115,7 @@ public class InGameUiManager : PersistentSingleton<InGameUiManager>
 
     public void LoadCurrentScene()
     {
-        StageManager.Instance.LoadCurrentScene();
+        StageManager.Instance.LoadCurrentStage();
     }
 
     public void ShowGameOver()

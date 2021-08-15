@@ -84,9 +84,10 @@ public class StageManager : PersistentSingleton<StageManager>
     }
     
     // 다시 시작
-    public void LoadCurrentScene()
+    public void LoadCurrentStage()
     {
-        LoadStage(curStageNum);
+        print("asdf");
+        Fade(false);
     }
     
     public void LoadStage(int stageNum)
