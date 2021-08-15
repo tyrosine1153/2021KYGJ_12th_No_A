@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EffectSoundManager : PersistentSingleton<EffectSoundManager>
+public class EffectSoundManager : MonoSingleton<EffectSoundManager>
 {
     [SerializeField] private AudioClip[] effectAudioClips;
     [SerializeField] private AudioSource walkAudioSource;

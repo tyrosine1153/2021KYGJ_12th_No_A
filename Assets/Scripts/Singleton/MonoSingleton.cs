@@ -5,7 +5,6 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static volatile T _instance;
     private static readonly object SyncRoot = new object();
-    public bool dontDestroyOnLoad;
 
     public static T Instance
     {
@@ -20,7 +19,12 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if (_instance != null) Debug.LogError(GetType().Name + " Singleton class is already created.");
+        print($"{GetType().Name} Singleton Awake");
+        if (_instance != null)
+        {
+            Debug.LogError(GetType().Name + " Singleton class is already created.");
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void OnDestroy()

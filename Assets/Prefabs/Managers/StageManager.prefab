@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4687c311bbfd8e64cbbe62b4c74ce0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
+  dontDestroyOnLoad: 1
   curStageNum: 0
   curStageText: {fileID: 5294589199502262743}
   mapNames:
@@ -149,7 +149,7 @@ MonoBehaviour:
   - "\uD0D1\uC2B9\uC7A5"
   - "\uB9C8\uC9C0\uB9C9 \uC5EC\uD589"
   ani: {fileID: 5294589199175051671}
-  StageData: 0
+  stageData: 0
 --- !u!1 &5294589199278224885
 GameObject:
   m_ObjectHideFlags: 0
