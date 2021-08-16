@@ -34,3 +34,9 @@
 
 ### [시연 영상](https://drive.google.com/file/d/1lxvQ5sq8x3uaGX9ItLrv7zFoL0pVfCrW/view?usp=sharing)
 
+
+
+### 실행 방법
+
+이 저장소의 Release에 개시된 최근 버전 파일(ex. NO-A.ver.0.9.2.zip)을 다운받아 PC에서 실행합니다.
+
