@@ -7,7 +7,7 @@ public class PrologueManager : MonoBehaviour
     [SerializeField] private StageManager stageManager;
 
     [SerializeField] private Sprite[] cuts;
-    [SerializeField] private string[] texts;
+    [SerializeField] [TextArea] private string[] texts;
     [SerializeField] private int cutNum;
 
     [SerializeField] private Image contents;
@@ -28,7 +28,7 @@ public class PrologueManager : MonoBehaviour
         cutNum++;
         nextBtn.SetActive(true);
         backBtn.SetActive(true);
-        if (cutNum == 6)
+        if (cutNum == cuts.Length - 1)
         {
             nextBtn.SetActive(false);
             isViewAll = true;
@@ -67,7 +67,7 @@ public class PrologueManager : MonoBehaviour
 
     public void Skip()
     {
-        stageManager.Fade(true); //다음맵으로
+        StageManager.Instance.Fade(true); //다음맵으로
     }
 
     public void ViewAll()
@@ -79,7 +79,7 @@ public class PrologueManager : MonoBehaviour
     {
         if (isViewAll)
         {
-            stageManager.Fade(true); //다음맵으로
+            StageManager.Instance.Fade(true); //다음맵으로
             isViewAll = false;
         }
     }
